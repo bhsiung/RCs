@@ -6,8 +6,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
+Plugin 'vim-addon-commenting'
+Bundle 'nfvs/vim-perforce'
+Bundle 'bitfyre/vim-indent-html'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " All of your Plugins must be added before the following line
@@ -31,11 +34,13 @@ filetype plugin indent on    " required
 set backspace=indent,eol,start
 set autoindent
 set smartindent
+set expandtab
+
 set nowrap
 set number
 set incsearch
 set ignorecase
-set synmaxcol=120
+set synmaxcol=500
 syntax on
 au BufRead,BufNewFile *.handlebars setfiletype html
 au BufRead,BufNewFile *.es6 setfiletype javascript
@@ -65,8 +70,11 @@ function! MaximizeToggle()
 endfunction
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-B> :!php -l %<CR>
+map <C-x> :set wrap nonu<CR>
 map <C-f> :call JsBeautify()<cr>
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+map <c-e> :P4edit<cr>
+map <C-o> :echo expand('%:p')<CR>
