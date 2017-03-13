@@ -3,44 +3,29 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-addon-commenting'
-Bundle 'nfvs/vim-perforce'
-Bundle 'bitfyre/vim-indent-html'
+Plugin 'tpope/vim-rails'
+Plugin 'walm/jshint.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'vim-ruby/vim-ruby'
+Bundle 'christoomey/vim-sort-motion'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
-
-
 set backspace=indent,eol,start
-set autoindent
 set smartindent
-set expandtab
-
 set nowrap
 set number
 set incsearch
 set ignorecase
 set synmaxcol=500
+set wildignore+=*/node_modules
 syntax on
 au BufRead,BufNewFile *.handlebars setfiletype html
 au BufRead,BufNewFile *.es6 setfiletype javascript
@@ -49,7 +34,6 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 set foldmethod=marker
-nnoremap <C-W>O :call MaximizeToggle ()<CR>
 nnoremap <C-W>o :call MaximizeToggle ()<CR>
 nnoremap <C-W><C-O> :call MaximizeToggle ()<CR>
 
@@ -70,11 +54,16 @@ function! MaximizeToggle()
 endfunction
 
 autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-B> :!php -l %<CR>
+"map <C-j> :JSHint<CR>
+map <C-j> :!eslint %<CR>
 map <C-x> :set wrap nonu<CR>
 map <C-f> :call JsBeautify()<cr>
-"map <C-n> :NERDTreeToggle<CR>
-map <c-e> :P4edit<cr>
 map <C-o> :echo expand('%:p')<CR>
+
+au BufNewFile,BufRead *.hbs set filetype=html
+au BufNewFile,BufRead *.scss set filetype=css
+
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set laststatus=2

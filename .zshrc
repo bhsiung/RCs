@@ -1,5 +1,8 @@
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # Path to your oh-my-zsh installation.
-export ZSH=/home/bear/.oh-my-zsh
+export ZSH=/Users/bhsiung/.oh-my-zsh
+export GOPATH="$HOME/go/"
+export PATH="$PATH:$GOPATH/bin"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,14 +52,19 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git npm sudo tmux)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+function diff {
+  colordiff -u "$@" | less -RF
+}
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -82,4 +90,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ack='ack-grep'
+alias phantom='~/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs'
+alias pb='npm version patch && npm publish && git push origin `git rev-parse --abbrev-ref HEAD`'
+alias bd='npm update @synack/hydra-frontend @synack/report-ui && npm run build && npm shrinkwrap'
+
+
+export ANDROID_HOME='/Users/bhsiung/Library/Android/sdk'
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export SYNACK=$HOME/synack
+export HYDRA=$SYNACK/hydra
+export PYTHONPATH=$HYDRA
