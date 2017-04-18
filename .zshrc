@@ -1,13 +1,12 @@
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bhsiung/.oh-my-zsh
-export GOPATH="$HOME/go/"
-export PATH="$PATH:$GOPATH/bin"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -52,19 +51,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm sudo tmux)
+plugins=(git npm sudo)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-function diff {
-  colordiff -u "$@" | less -RF
-}
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -80,7 +73,7 @@ function diff {
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -90,14 +83,4 @@ function diff {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias phantom='~/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs'
-alias pb='npm version patch && npm publish && git push origin `git rev-parse --abbrev-ref HEAD`'
-alias bd='npm update @synack/hydra-frontend @synack/report-ui && npm run build && npm shrinkwrap'
-
-
-export ANDROID_HOME='/Users/bhsiung/Library/Android/sdk'
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-export SYNACK=$HOME/synack
-export HYDRA=$SYNACK/hydra
-export PYTHONPATH=$HYDRA
+alias vi='/usr/local/Cellar/vim/8.0.0559/bin/vim'
