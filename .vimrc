@@ -1,30 +1,39 @@
+" good references:
+" http://www.tricksofthetrades.net/tags/Vim/
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+"Plugin 'tomtom/tcomment_vim'
+"Plugin 'Valloric/YouCompleteMe'
+Bundle 'christoomey/vim-sort-motion'
+Plugin 'bling/vim-airline'
+Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
-Plugin 'mileszs/ack.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ervandew/supertab'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'editorconfig/editorconfig-vim'
-"Plugin 'Valloric/YouCompleteMe'
-" Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
-Plugin 'walm/jshint.vim'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'vim-ruby/vim-ruby'
-Bundle 'christoomey/vim-sort-motion'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'mhinz/vim-startify'
+Plugin 'mileszs/ack.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mxw/vim-jsx'
+Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
+Plugin 'othree/html5.vim' " HTML5 syntax enhancements
+Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'walm/jshint.vim'
+
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#end()            " required
 set backspace=indent,eol,start
@@ -39,7 +48,7 @@ set mouse=r
 set wildmenu
 set wildignore+=*/node_modules
 set termguicolors
-colorscheme base16-brewer
+colorscheme base16-monokai
 syntax on
 filetype plugin indent on
 au BufRead,BufNewFile *.handlebars setfiletype html
@@ -49,8 +58,24 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 set foldmethod=marker
+
+
+
 nnoremap <C-W>o :call MaximizeToggle ()<CR>
 nnoremap <C-W><C-O> :call MaximizeToggle ()<CR>
+" resize
+nnoremap <silent> <S-left> :vertical resize -10<CR>
+nnoremap <silent> <S-right> :vertical resize +10<CR>
+nnoremap <silent> <S-up> :resize +10<CR>
+nnoremap <silent> <S-down> :resize -10<CR>
+"map <C-j> :JSHint<CR>
+map <C-j> :!eslint %<CR>
+map <C-x> :set wrap nonu<CR>
+" map <C-f> :call JsBeautify()<cr>
+map <C-o> :echo expand('%:p')<CR>
+map <C-n> :NERDTree /home/bhsiung/voyager-web<CR>
+map <C-s> :Startify<CR>
+imap jj <Esc>
 
 function! MaximizeToggle()
 	if exists("s:maximize_session")
@@ -70,14 +95,6 @@ endfunction
 
 autocmd StdinReadPre * let s:std_in=1
 
-"map <C-j> :JSHint<CR>
-map <C-j> :!eslint %<CR>
-map <C-x> :set wrap nonu<CR>
-map <C-f> :call JsBeautify()<cr>
-map <C-o> :echo expand('%:p')<CR>
-map <C-n> :NERDTree /home/bhsiung/voyager-web<CR>
-map <C-s> :Startify<CR>
-imap jj <Esc>
 
 au BufNewFile,BufRead *.hbs set filetype=html
 au BufNewFile,BufRead *.scss set filetype=css
@@ -156,11 +173,44 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
 
 
-" resize
-nnoremap <silent> <S-left> :vertical resize -10<CR>
-nnoremap <silent> <S-right> :vertical resize +10<CR>
-nnoremap <silent> <S-up> :resize +10<CR>
-nnoremap <silent> <S-down> :resize -10<CR>
 
 " scrooloose/nerdcommenter
 let NERDSpaceDelims=1
+
+" scrooloose/nerdtree settings
+let NERDTreeMouseMode = 2
+"let NERDTreeRespectWildIgnore = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore=[
+      \'^pemberly$',
+      \'^\.gradle$',
+      \'^\.log$',
+      \'^logs$',
+      \'^i18n$',
+      \'^node_modules$',
+      \'^dist$',
+      \'^tmp$',
+      \'^bower_components$',
+      \'^coverage$',
+      \'^build$',
+      \'^acl$',
+      \'^screenshots$',
+      \'^tools$',
+      \'^vendor$',
+      \'^docs$',
+      \'^out$',
+      \'^public$',
+      \'^concat-stats-for$']
+
+" tiagofumo/vim-nerdtree-syntax-highlight
+let s:yellow = "F2DD58"
+let s:green = "8FAA54"
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['js'] = s:yellow " make js a brighter yellow
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['json'] = s:green " make json green
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid  error
+
+" vmustache/vim-mustache-handlebars settings
+let g:mustache_abbreviations = 1
