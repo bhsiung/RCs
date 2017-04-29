@@ -1,26 +1,28 @@
 " good references:
 " http://www.tricksofthetrades.net/tags/Vim/
+" http://vimawesome.com/plugin/surround-vim
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"Plugin 'tomtom/tcomment_vim'
-"Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'mhinz/vim-startify'
+" Plugin 'mxw/vim-jsx'
+" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
+" Plugin 'tomtom/tcomment_vim'
+" Plugin 'walm/jshint.vim'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ervandew/supertab'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mhinz/vim-startify'
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'mxw/vim-jsx'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
 Plugin 'othree/html5.vim' " HTML5 syntax enhancements
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
@@ -28,11 +30,9 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround' " nice surrond plugin
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'walm/jshint.vim'
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#end()            " required
@@ -48,7 +48,10 @@ set mouse=r
 set wildmenu
 set wildignore+=*/node_modules
 set termguicolors
-colorscheme base16-monokai
+"
+" preview page: https://chriskempson.github.io/base16/
+colorscheme base16-unikitty-dark
+
 syntax on
 filetype plugin indent on
 au BufRead,BufNewFile *.handlebars setfiletype html
@@ -73,7 +76,7 @@ map <C-j> :!eslint %<CR>
 map <C-x> :set wrap nonu<CR>
 " map <C-f> :call JsBeautify()<cr>
 map <C-o> :echo expand('%:p')<CR>
-map <C-n> :NERDTree /home/bhsiung/voyager-web<CR>
+map <C-n> :NERDTree ~/voyager-web<CR>
 map <C-s> :Startify<CR>
 imap jj <Esc>
 
