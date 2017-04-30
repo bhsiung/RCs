@@ -1,6 +1,7 @@
 " good references:
 " http://www.tricksofthetrades.net/tags/Vim/
 " http://vimawesome.com/plugin/surround-vim
+" https://chriskempson.github.io/base16/
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -50,7 +51,7 @@ set wildignore+=*/node_modules
 set termguicolors
 "
 " preview page: https://chriskempson.github.io/base16/
-colorscheme base16-unikitty-dark
+colorscheme base16-3024
 
 syntax on
 filetype plugin indent on
