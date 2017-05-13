@@ -7,13 +7,14 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'mhinz/vim-startify'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'walm/jshint.vim'
+Plugin 'reedes/vim-lexical'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -26,6 +27,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
 Plugin 'othree/html5.vim' " HTML5 syntax enhancements
+Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
@@ -48,7 +50,9 @@ set synmaxcol=500
 set mouse=r
 set wildmenu
 set wildignore+=*/node_modules
-set termguicolors
+if has('termguicolors')
+  set termguicolors
+endif
 "
 " preview page: https://chriskempson.github.io/base16/
 colorscheme base16-3024
@@ -77,7 +81,7 @@ map <C-j> :!eslint %<CR>
 map <C-x> :set wrap nonu<CR>
 " map <C-f> :call JsBeautify()<cr>
 map <C-o> :echo expand('%:p')<CR>
-map <C-n> :NERDTree ~/voyager-web<CR>
+map <C-n> :NERDTree ~/voyager-web_trunk<CR>
 map <C-s> :Startify<CR>
 imap jj <Esc>
 
@@ -165,7 +169,7 @@ let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_compon
 
 
 " scrooloose/syntastic settings
-let g:syntastic_javascript_eslint_exec = '/home/bhsiung/voyager-web/node_modules/.bin/eslint'
+let g:syntastic_javascript_eslint_exec = '~/voyager-web/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
@@ -218,3 +222,18 @@ let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid  er
 
 " vmustache/vim-mustache-handlebars settings
 let g:mustache_abbreviations = 1
+
+" VIM-LEXICAL
+let g:lexical#spell = 1
+set nocompatible
+filetype plugin on       " may already be in your .vimrc
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+" YCM
+let g:ycm_filetype_specific_completion_to_disable = { 'gitcommit': 1 }
