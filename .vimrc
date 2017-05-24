@@ -7,14 +7,15 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'mhinz/vim-startify'
 " Plugin 'mxw/vim-jsx'
+" Plugin 'reedes/vim-lexical'
 " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 " Plugin 'tomtom/tcomment_vim'
+" Plugin 'tpope/vim-surround' " nice surrond plugin
 " Plugin 'walm/jshint.vim'
-Plugin 'reedes/vim-lexical'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -22,6 +23,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'heavenshell/vim-jsdoc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
@@ -34,7 +36,6 @@ Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround' " nice surrond plugin
 Plugin 'vim-airline/vim-airline-themes'
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -158,9 +159,6 @@ let g:airline_symbols.linenr = '⭡'
 set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h14
 let g:airline_powerline_fonts = 1
 
-"Syntastic 
-let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
-
 "ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_components|coverage|build|acl|screenshots|concat-stats-for)|(\.(swp|ico|git|svn))$'
 
@@ -169,16 +167,17 @@ let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_compon
 
 
 " scrooloose/syntastic settings
+" let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
 let g:syntastic_javascript_eslint_exec = '~/voyager-web/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '✕'
+let g:syntastic_error_symbol = '✗✗'
 let g:syntastic_style_error_symbol = '✕'
+let g:syntastic_style_warning_symbol = '≈≈'
 let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_warning_symbol = '⚠'
 
 
 
@@ -237,3 +236,30 @@ augroup END
 
 " YCM
 let g:ycm_filetype_specific_completion_to_disable = { 'gitcommit': 1 }
+
+" jsdoc
+" http://vimawesome.com/plugin/vim-jsdoc
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_additional_descriptions=1
+let g:jsdoc_underscore_private=1
+" let g:jsdoc_type_hook=1
+" let g:jsdoc_enable_es6=1
+nmap <silent> <C-l> <Plug>(jsdoc)
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Swap/Backup file settings
+set noswapfile " no more weirdo swap files
+set nobackup " no more weirdo backup files
+set backupdir=~/.backup " Where backups would go if we had them
+set dir=~/.swap " Where swap files would go if we had them
+
+" spell check
+" http://thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
+" manually turn on `:spelllang`
+" get suggestion: `z=`
+set spell
