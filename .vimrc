@@ -3,20 +3,24 @@
 " http://vimawesome.com/plugin/surround-vim
 " https://chriskempson.github.io/base16/
 set nocompatible              " be iMproved, required
+set ttyfast
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'mhinz/vim-startify'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'reedes/vim-lexical'
-" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'tpope/vim-surround' " nice surrond plugin
 " Plugin 'walm/jshint.vim'
+" Plugin 'othree/html5.vim' " HTML5 syntax enhancements
+" Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
 Bundle 'christoomey/vim-sort-motion'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Yggdroot/indentLine' " Indent guide lines
+Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Plugin 'bling/vim-airline'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
@@ -25,16 +29,15 @@ Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
 Plugin 'mileszs/ack.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
-Plugin 'othree/html5.vim' " HTML5 syntax enhancements
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -56,7 +59,7 @@ if has('termguicolors')
 endif
 "
 " preview page: https://chriskempson.github.io/base16/
-colorscheme base16-3024
+colorscheme base16-pop
 
 syntax on
 filetype plugin indent on
@@ -70,6 +73,7 @@ set foldmethod=marker
 
 
 
+nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <C-W>o :call MaximizeToggle ()<CR>
 nnoremap <C-W><C-O> :call MaximizeToggle ()<CR>
 " resize
@@ -137,7 +141,7 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" powerline symbols
+" " powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -146,7 +150,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" old vim-powerline symbols
+" " old vim-powerline symbols
 let g:airline_left_sep = '⮀'
 let g:airline_left_alt_sep = '⮁'
 let g:airline_right_sep = '⮂'
@@ -154,10 +158,10 @@ let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
+let g:airline_powerline_fonts = 1
 
 "Nerd tree config
 set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h14
-let g:airline_powerline_fonts = 1
 
 "ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_components|coverage|build|acl|screenshots|concat-stats-for)|(\.(swp|ico|git|svn))$'
@@ -167,17 +171,16 @@ let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_compon
 
 
 " scrooloose/syntastic settings
-" let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
 let g:syntastic_javascript_eslint_exec = '~/voyager-web/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '✗✗'
-let g:syntastic_style_error_symbol = '✕'
-let g:syntastic_style_warning_symbol = '≈≈'
-let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '錯'
+let g:syntastic_style_error_symbol = '醜'
+let g:syntastic_style_warning_symbol = '孬'
+let g:syntastic_warning_symbol = '弱'
 
 
 
@@ -263,3 +266,12 @@ set dir=~/.swap " Where swap files would go if we had them
 " manually turn on `:spelllang`
 " get suggestion: `z=`
 set spell
+vnoremap // y/<C-R>"<CR>"
+
+" airblade/vim-gitgutter settings
+let g:gitgutter_sign_column_always = 1
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✎'
+let g:gitgutter_sign_removed = '刪'
+let g:gitgutter_sign_removed_first_line = '刪'
+let g:gitgutter_sign_modified_removed = '✎'
