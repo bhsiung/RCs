@@ -51,7 +51,7 @@ set number
 set incsearch
 set ignorecase
 set synmaxcol=500
-set mouse=r
+set mouse=a
 set wildmenu
 set wildignore+=*/node_modules
 if has('termguicolors')
@@ -111,13 +111,11 @@ autocmd StdinReadPre * let s:std_in=1
 
 au BufNewFile,BufRead *.hbs set filetype=html
 au BufNewFile,BufRead *.scss set filetype=css
-
 set laststatus=2
-let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#enabled = 1
-
 
 " airline config
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
@@ -224,18 +222,6 @@ let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid  er
 
 " vmustache/vim-mustache-handlebars settings
 let g:mustache_abbreviations = 1
-
-" VIM-LEXICAL
-let g:lexical#spell = 1
-set nocompatible
-filetype plugin on       " may already be in your .vimrc
-
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
 
 " YCM
 let g:ycm_filetype_specific_completion_to_disable = { 'gitcommit': 1 }
