@@ -53,7 +53,7 @@ set nowrap
 set number
 set incsearch
 set ignorecase
-set synmaxcol=500
+set synmaxcol=200
 set mouse=a
 set wildmenu
 set wildignore+=*/node_modules
@@ -273,4 +273,4 @@ let g:gitgutter_sign_modified_removed = '✎'
 let g:gitgutter_enabled = 0
 
 
-set colorcolumn=150
+set colorcolumn=100
