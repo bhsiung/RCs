@@ -7,30 +7,29 @@ set ttyfast
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
 call vundle#begin()
-" Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'mxw/vim-jsx'
+" Plugin 'othree/html5.vim' " HTML5 syntax enhancements
 " Plugin 'reedes/vim-lexical'
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'tpope/vim-surround' " nice surrond plugin
 " Plugin 'walm/jshint.vim'
-" Plugin 'othree/html5.vim' " HTML5 syntax enhancements
-" Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
 Bundle 'christoomey/vim-sort-motion'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Plugin 'bling/vim-airline'
-Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'junegunn/fzf.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mhinz/vim-startify'
 Plugin 'mileszs/ack.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'ryanoasis/vim-devicons'
@@ -41,11 +40,15 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
 
+Plug '/usr/local/opt/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#end()            " required
 set backspace=indent,eol,start
 set smartindent
-set cursorline " highlight current line
+set nocursorline " remove highlight current line
+" set cursorline " highlight current line
 set nowrap
 set number
 set incsearch
@@ -59,9 +62,12 @@ if has('termguicolors')
 endif
 "
 " preview page: https://chriskempson.github.io/base16/
-colorscheme base16-pop
+" colorscheme base16-pop
+colorscheme base16-tomorrow-night
 
 syntax on
+au BufRead,BufNewFile *.scss setfiletype sass
+au BufEnter *.scss :syntax sync fromstart
 filetype plugin indent on
 au BufRead,BufNewFile *.handlebars setfiletype html
 au BufRead,BufNewFile *.es6 setfiletype javascript
@@ -81,13 +87,10 @@ nnoremap <silent> <S-left> :vertical resize -10<CR>
 nnoremap <silent> <S-right> :vertical resize +10<CR>
 nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
-"map <C-j> :JSHint<CR>
-map <C-j> :!eslint %<CR>
 map <C-x> :set wrap nonu<CR>
-" map <C-f> :call JsBeautify()<cr>
 map <C-o> :echo expand('%:p')<CR>
-map <C-n> :NERDTree ~/voyager-web_trunk<CR>
-map <C-s> :Startify<CR>
+" map <C-n> :NERDTree ~/voyager-web_trunk<CR>
+map <C-n> :NERDTree ~/jobs-management-frontend_trunk/jobs-management-frontend/assets/javascripts<CR>
 imap jj <Esc>
 
 function! MaximizeToggle()
@@ -109,8 +112,8 @@ endfunction
 autocmd StdinReadPre * let s:std_in=1
 
 
-au BufNewFile,BufRead *.hbs set filetype=html
-au BufNewFile,BufRead *.scss set filetype=css
+" au BufNewFile,BufRead *.hbs set filetype=html
+" au BufNewFile,BufRead *.scss set filetype=css
 set laststatus=2
 
 " airline config
@@ -165,11 +168,15 @@ set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete\ Mono:h14
 let g:ctrlp_custom_ignore = '\v[\/](logs|i18n|node_modules|dist|tmp|bower_components|coverage|build|acl|screenshots|concat-stats-for)|(\.(swp|ico|git|svn))$'
 
 
-:set fillchars+=vert:\ 
+:set fillchars+=vert:\
 
 
 " scrooloose/syntastic settings
-let g:syntastic_javascript_eslint_exec = '~/voyager-web/node_modules/.bin/eslint'
+let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
+let g:syntastic_scss_eslint_exec = '$PWD/node_modules/.bin/stylelint'
+let g:syntastic_sass_eslint_exec = '$PWD/node_modules/.bin/stylelint'
+let g:syntastic_scss_checkers = ['stylelint']
+" let g:syntastic_javascript_eslint_exec = '~/voyager-web_trunk/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
@@ -179,6 +186,8 @@ let g:syntastic_error_symbol = '錯'
 let g:syntastic_style_error_symbol = '醜'
 let g:syntastic_style_warning_symbol = '孬'
 let g:syntastic_warning_symbol = '弱'
+" let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_enable_perl_checker = 1
 
 
 
@@ -261,3 +270,7 @@ let g:gitgutter_sign_modified = '✎'
 let g:gitgutter_sign_removed = '刪'
 let g:gitgutter_sign_removed_first_line = '刪'
 let g:gitgutter_sign_modified_removed = '✎'
+let g:gitgutter_enabled = 0
+
+
+set colorcolumn=150
