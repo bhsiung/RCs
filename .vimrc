@@ -7,8 +7,8 @@ set ttyfast
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call plug#begin('~/.vim/plugged')
-call vundle#begin()
+ call vundle#begin()
+" call plug#begin('~/.vim/plugged')
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'othree/html5.vim' " HTML5 syntax enhancements
@@ -16,6 +16,9 @@ call vundle#begin()
 " Plugin 'tomtom/tcomment_vim'
 " Plugin 'tpope/vim-surround' " nice surrond plugin
 " Plugin 'walm/jshint.vim'
+" Plugin 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
@@ -25,7 +28,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
-Plugin 'junegunn/fzf.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
@@ -40,8 +42,6 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
 
-Plug '/usr/local/opt/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 call vundle#end()            " required
