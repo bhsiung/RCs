@@ -18,7 +18,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary whitespace
+Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
@@ -159,5 +159,9 @@ nnoremap <silent> <S-right> :vertical resize +10<CR>
 nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
 
-" spell checking
+" spell check
+" http://thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
+" manually turn on `:spelllang`
+" get suggestion: `z=`
+set spell
 set spelllang=en
