@@ -1,0 +1,10 @@
+[user]
+	email = bhsiung@linkedin.com
+	name = Biing-yann Hsiung (bear)
+[alias]
+	ci = commit
+	st = status
+	co = checkout
+	c = cherry-pick
+[core]
+	editor = /usr/bin/vim
