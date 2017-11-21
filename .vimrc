@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'chrisbra/nrrwrgn'
 Bundle 'christoomey/vim-sort-motion'
+Plugin 'coldnight/pretty_json.vim'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines

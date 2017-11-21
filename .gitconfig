@@ -7,4 +7,4 @@
 	co = checkout
 	c = cherry-pick
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/local/Cellar/vim/8.0.0559/bin/vim
