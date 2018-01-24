@@ -2,12 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/bhsiung/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 ZSH_THEME="blinks"
 plugins=(git npm sudo ssh-agent Z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-alias vi='/usr/local/Cellar/vim/8.0.0559/bin/vim'
+alias vi='/usr/local/bin/vim'
+alias vim='/usr/local/bin/vim'
 
 # for powerline-shell
 # function powerline_precmd() {

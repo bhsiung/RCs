@@ -1,10 +1,15 @@
 [user]
-	email = bhsiung@linkedin.com
-	name = Biing-yann Hsiung (bear)
+  email = bhsiung@linkedin.com
+  name = Biing-yann Hsiung (bear)
 [alias]
-	ci = commit
-	st = status
-	co = checkout
 	c = cherry-pick
+	ci = commit
+	co = checkout
+	mg = merge
+	r = rebase
+	st = status
+	rc = review create
+	rd = review dcommit
+	ru = review update
 [core]
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim

@@ -4,18 +4,19 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'chrisbra/nrrwrgn'
-Bundle 'christoomey/vim-sort-motion'
-Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'Yggdroot/indentLine' " Indent guide lines
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
+Bundle 'christoomey/vim-sort-motion'
+Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
+Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
+Plugin 'git://gitli.corp.linkedin.com/jcdean/vim-pemberly.git'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
@@ -25,6 +26,7 @@ Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tacahiroy/ctrlp-funky'
 
 call vundle#end()            " required
 
@@ -159,9 +161,19 @@ nnoremap <silent> <S-right> :vertical resize +10<CR>
 nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
 
+" explore
+nnoremap <silent> <C-e> :Explore<CR>
+
 " spell check
 " http://thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
 " manually turn on `:spelllang`
 " get suggestion: `z=`
 set spell
 set spelllang=en
+
+let g:VimPemberlyDebug = 0
+
+" CTRLP-FUNKY
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
