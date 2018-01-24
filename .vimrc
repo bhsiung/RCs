@@ -6,6 +6,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Bundle 'christoomey/vim-sort-motion'
+<<<<<<< HEAD
+=======
+Plugin 'coldnight/pretty_json.vim'
+Plugin 'joukevandermaas/vim-ember-hbs'
+Plugin 'easymotion/vim-easymotion'
+>>>>>>> 28f98f1be2fbf69c4702b88e4c23de0d487ef2be
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
