@@ -180,9 +180,14 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " vim javascript
-"let g:javascript_plugin_jsdoc = 1
-"augroup javascript_folding
-    "au!
-    "au FileType javascript setlocal foldmethod=syntax
-"augroup END
-"set conceallevel=1
+let g:javascript_plugin_jsdoc = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+let g:javascript_conceal_function = "ƒ"
+let g:javascript_conceal_arrow_function = "⇒"
+set conceallevel=1
+
+" sass folding
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
