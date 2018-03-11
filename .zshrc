@@ -47,3 +47,5 @@ alias killjs='killjava; killnode; killember; killphantom'
 
 # added by travis gem
 [ -f /Users/bhsiung/.travis/travis.sh ] && source /Users/bhsiung/.travis/travis.sh
+
+alias tmux="TERM=screen-256color-bce tmux -CC"

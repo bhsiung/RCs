@@ -12,4 +12,4 @@
 	rd = review dcommit
 	ru = review update
 [core]
-	editor = /usr/local/Cellar/vim/8.0.0559/bin/vim
+	editor = /usr/local/bin/vim

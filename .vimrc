@@ -6,16 +6,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Bundle 'christoomey/vim-sort-motion'
-<<<<<<< HEAD
-=======
-Plugin 'coldnight/pretty_json.vim'
-Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'easymotion/vim-easymotion'
->>>>>>> 28f98f1be2fbf69c4702b88e4c23de0d487ef2be
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
+Plugin 'coldnight/pretty_json.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
@@ -30,9 +25,9 @@ Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/syntastic'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tacahiroy/ctrlp-funky'
 
 call vundle#end()            " required
 
@@ -183,3 +178,11 @@ let g:VimPemberlyDebug = 0
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+" vim javascript
+"let g:javascript_plugin_jsdoc = 1
+"augroup javascript_folding
+    "au!
+    "au FileType javascript setlocal foldmethod=syntax
+"augroup END
+"set conceallevel=1
