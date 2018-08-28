@@ -7,6 +7,7 @@ call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
+Plugin 'andrewradev/linediff.vim'
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
@@ -19,12 +20,15 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'kien/ctrlp.vim'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/syntastic'
+Plugin 'shougo/deoplete.nvim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
@@ -55,8 +59,8 @@ endif
 "
 " preview page: https://chriskempson.github.io/base16/
 "colorscheme base16-pop
-"colorscheme base16-tomorrow-night
-colorscheme base16-mocha
+colorscheme base16-tomorrow-night
+"colorscheme base16-mocha
 
 
 " Search settings
@@ -181,13 +185,16 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " vim javascript
 let g:javascript_plugin_jsdoc = 1
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
-let g:javascript_conceal_function = "ƒ"
-let g:javascript_conceal_arrow_function = "⇒"
-set conceallevel=1
+"augroup javascript_folding
+    "au!
+    "au FileType javascript setlocal foldmethod=syntax
+"augroup END
+"let g:javascript_conceal_function = "ƒ"
+"let g:javascript_conceal_arrow_function = "⇒"
+"set conceallevel=1
 
 " sass folding
 autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
