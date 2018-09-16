@@ -40,7 +40,7 @@ filetype plugin indent on " Allow smart indentation and filetype detection
 set autoread " Auto re-read files that have changes outside of vim
 set bg=dark " Dark background
 set cmdheight=2 " Increase command line height
-set colorcolumn=100 " Vertical rule at 100 columns
+set colorcolumn=120 " Vertical rule at 100 columns
 set cursorline " highlight current line
 set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
 set fillchars+=vert:\┋ " Solid pipe character for window split icon
@@ -75,11 +75,6 @@ set noswapfile " no more weirdo swap files
 set nobackup " no more weirdo backup files
 set backupdir=~/.backup " Where backups would go if we had them
 set dir=~/.swap " Where swap files would go if we had them
-
-" ctrlpvim/ctrlp.vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Respect .gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 " Indentation settings
 set expandtab " Convert tabs to spaces
