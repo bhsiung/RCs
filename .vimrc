@@ -194,3 +194,6 @@ autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldma
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+
+"ember import
+let g:vim_ember_imports_map = '<Leader>e'
