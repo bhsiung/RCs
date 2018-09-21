@@ -29,7 +29,6 @@ Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/syntastic'
-Plugin 'shougo/deoplete.nvim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
