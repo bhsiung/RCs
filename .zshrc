@@ -1,14 +1,23 @@
+export TERM=xterm-256color
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export EDITOR=/usr/bin/vim
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="blinks"
 plugins=(git npm sudo ssh-agent Z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-alias vi='/usr/local/bin/vim'
-alias vim='/usr/local/bin/vim'
+if [[ -a /usr/bin/vim ]]; then
+  # for ubuntu
+  alias vi='/usr/bin/vim'
+  alias vim='/usr/bin/vim'
+else
+  # for REHL
+  alias vi='/usr/local/bin/vim'
+  alias vim='/usr/local/bin/vim'
+fi
 
 # for powerline-shell
 # function powerline_precmd() {
@@ -49,3 +58,30 @@ alias killjs='killjava; killnode; killember; killphantom'
 [ -f /Users/bhsiung/.travis/travis.sh ] && source /Users/bhsiung/.travis/travis.sh
 
 alias tmux="TERM=screen-256color-bce tmux -CC"
+alias tmux2="TERM=xterm-256color-bce tmux -CC"
+
+# zsh-sticky-prefix
+
+local zle_sticked=""
+
+zle-line-init() {
+    BUFFER="$zle_sticked$BUFFER"
+    zle end-of-line
+}
+zle -N zle-line-init
+
+function zle-set-sticky {
+    zle_sticked="$BUFFER"
+    zle -M "Sticky: '$zle_sticked'."
+}
+zle -N zle-set-sticky
+bindkey '^S' zle-set-sticky
+
+function accept-line {
+    if [[ -z "$BUFFER" ]] && [[ -n "$zle_sticked" ]]; then
+        zle_sticked=""
+        echo -n "\nRemoved sticky."
+    fi
+    zle .accept-line
+}
+zle -N accept-line
