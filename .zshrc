@@ -9,14 +9,14 @@ ZSH_THEME="blinks"
 plugins=(git npm sudo ssh-agent Z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-if [[ -a /usr/bin/vim ]]; then
-  # for ubuntu
-  alias vi='/usr/bin/vim'
-  alias vim='/usr/bin/vim'
-else
+if [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   alias vi='/usr/local/bin/vim'
   alias vim='/usr/local/bin/vim'
+else
+  # for ubuntu
+  alias vi='/usr/bin/vim'
+  alias vim='/usr/bin/vim'
 fi
 
 # for powerline-shell
