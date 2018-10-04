@@ -6,29 +6,31 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 Bundle 'christoomey/vim-sort-motion'
+Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'andrewradev/linediff.vim'
 Plugin 'bling/vim-airline'
-Plugin 'sukima/vim-ember-imports'
 Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
 Plugin 'coldnight/pretty_json.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
-Plugin 'git://gitli.corp.linkedin.com/jcdean/vim-pemberly.git'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'kien/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
+Plugin 'palantir/tslint'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/syntastic'
+Plugin 'sukima/vim-ember-imports'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
@@ -97,7 +99,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " scrooloose/syntastic settings
-let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
+let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/tslint'
 let g:syntastic_scss_eslint_exec = '$PWD/node_modules/.bin/stylelint'
 let g:syntastic_sass_eslint_exec = '$PWD/node_modules/.bin/stylelint'
 let g:syntastic_scss_checkers = ['stylelint']
