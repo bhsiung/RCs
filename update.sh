@@ -1,4 +1,5 @@
-!#/usr/bin/zsh
+#!/usr/bin/zsh
+
 git pull &&
 git add . &&
 git ci -m 'daily update' &&
