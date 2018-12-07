@@ -21,7 +21,6 @@ call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 "Plugin 'coldnight/pretty_json.vim'
 Bundle 'christoomey/vim-sort-motion'
-Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'andrewradev/linediff.vim'
 Plugin 'bling/vim-airline'
@@ -201,8 +200,8 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " vim javascript
 let g:javascript_plugin_jsdoc = 1
 "augroup javascript_folding
-    "au!
-    "au FileType javascript setlocal foldmethod=syntax
+"au!
+"au FileType javascript setlocal foldmethod=syntax
 "augroup END
 "let g:javascript_conceal_function = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"
