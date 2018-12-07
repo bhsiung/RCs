@@ -51,6 +51,9 @@ alias killphantom='killall -9 phantomjs-2.0.0-li2-osx.bin && echo "phantom kille
 
 alias jsfuck='killjava; killnode; killember; killphantom'
 alias killjs='killjava; killnode; killember; killphantom'
+alias g='git'
+alias j='just'
+alias v='vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -85,3 +88,6 @@ function accept-line {
     zle .accept-line
 }
 zle -N accept-line
+
+# enable yarn executable path
+export PATH="$PATH:`yarn global bin`"

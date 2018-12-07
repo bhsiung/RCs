@@ -2,11 +2,13 @@
   email = bhsiung@linkedin.com
   name = Biing-yann Hsiung (bear)
 [alias]
+	b = branch
 	c = cherry-pick
 	ci = commit
 	co = checkout
 	mg = merge
 	r = rebase
+	sh = stash
 	st = status
 	rc = review create
 	rd = review dcommit

@@ -1,3 +1,17 @@
+"          __                              ___   __        .ama     ,
+"       ,d888a                          ,d88888888888ba.  ,88"I)   d
+"      a88']8i                         a88".8"8)   `"8888:88  " _a8'
+"    .d8P' PP                        .d8P'.8  d)      "8:88:baad8P'
+"   ,d8P' ,ama,   .aa,  .ama.g ,mmm  d8P' 8  .8'        88):888P'
+"  ,d88' d8[ "8..a8"88 ,8I"88[ I88' d88   ]IaI"        d8[
+"  a88' dP "bm8mP8'(8'.8I  8[      d88'    `"         .88
+" ,88I ]8'  .d'.8     88' ,8' I[  ,88P ,ama    ,ama,  d8[  .ama.g
+" [88' I8, .d' ]8,  ,88B ,d8 aI   (88',88"8)  d8[ "8. 88 ,8I"88[
+" ]88  `888P'  `8888" "88P"8m"    I88 88[ 8[ dP "bm8m88[.8I  8[
+" ]88,          _,,aaaaaa,_       I88 8"  8 ]P'  .d' 88 88' ,8' I[
+" `888a,.  ,aadd88888888888bma.   )88,  ,]I I8, .d' )88a8B ,d8 aI
+"   "888888PP"'        `8""""""8   "888PP'  `888P'  `88P"88P"8m"
+
 set nocompatible              " be iMproved, required
 set ttyfast
 filetype off                  " required
@@ -5,14 +19,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
+"Plugin 'coldnight/pretty_json.vim'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'andrewradev/linediff.vim'
 Plugin 'bling/vim-airline'
-Plugin 'sukima/vim-ember-imports'
 Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
-Plugin 'coldnight/pretty_json.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
@@ -27,10 +40,14 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'sukima/vim-ember-imports'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()            " required
@@ -41,6 +58,7 @@ set bg=dark " Dark background
 set cmdheight=2 " Increase command line height
 set colorcolumn=120 " Vertical rule at 100 columns
 set cursorline " highlight current line
+set lazyredraw
 set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
 set fillchars+=vert:\┋ " Solid pipe character for window split icon
 set hidden " Allow 'hidden' buffers
@@ -196,3 +214,16 @@ let g:deoplete#enable_at_startup = 1
 
 "ember import
 let g:vim_ember_imports_map = '<Leader>e'
+
+"toggle nerdtree
+nmap ,n :NERDTreeFind<CR>
+nmap ,m :NERDTreeToggle<CR>
+
+
+" split
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
