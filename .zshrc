@@ -41,6 +41,8 @@ alias dd='killall phantomjs-2.0.0-li2-osx.bin'
 alias nuclear_option='pkill -9 ember; pkill -9 java; pkill -9 phantomjs; pkill -9 node; rm -rf ./tmp ~/.just ~/.bpr ~/.pemberly; echo -e "\t💣   💥   🔥   😎"'
 alias cleantmp='rsync -av --delete ~/empty/ ~/voyager-web_trunk/tmp/'
 alias goj='~/jobs-management-frontend_trunk/jobs-management-frontend/assets/javascripts'
+alias ulnf='sh scripts/fast.sh unlink ember-ts-facets && j init && j yarn start'
+alias lnf='j init && sh scripts/fast.sh unlink ember-ts-facets && sh scripts/fast.sh link ember-ts-facets && j yarn start'
 
 export STORK_GIT_CAMPAIGNS_DIR=/Users/$USER/flock-templates_trunk
 alias cat='pygmentize -O style=monokai -f console256 -g'
