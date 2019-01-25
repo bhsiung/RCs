@@ -80,15 +80,17 @@ if has('termguicolors')
 endif
 "
 " preview page: https://chriskempson.github.io/base16/
-" colorscheme base16-gruvbox-light-hard
-" colorscheme base16-pop
-" colorscheme base16-tomorrow-night
-" colorscheme base16-mocha
+" colorscheme base16-atelier-plateau
 " colorscheme base16-brewer
+" colorscheme base16-gruvbox-light-hard
 " colorscheme base16-harmonic-dark
 " colorscheme base16-materia
+" colorscheme base16-material
+" colorscheme base16-mocha
+" colorscheme base16-pop
 " colorscheme base16-snazzy
-colorscheme base16-tomorrow-night
+" colorscheme base16-tomorrow-night
+colorscheme base16-marrakesh
 
 "
 " base16-3024                       base16-black-metal-marduk  base16-gruvbox-dark-hard     base16-ocean
@@ -223,6 +225,9 @@ nnoremap <silent> <S-right> :vertical resize +10<CR>
 nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
 
+" refresh
+nnoremap <silent> <C-r> :call Boo()<CR>
+
 " explore
 nnoremap <silent> <C-e> :Explore<CR>
 
@@ -270,3 +275,9 @@ set splitright
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
+
+function! Boo()
+  let colors = substitute(system('ls ~/.vim/bundle/base16-vim/colors/ |sort -R |tail -n 1'),".vim.*$","","")
+  echo "applied " . colors
+  execute "colorscheme " . colors
+endfunction
