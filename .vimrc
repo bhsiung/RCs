@@ -20,6 +20,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 "Plugin 'coldnight/pretty_json.vim'
+Plugin 'mvolkmann/vim-js-arrow-function'
 Plugin 'tpope/vim-repeat'
 Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-abolish'
@@ -60,7 +61,7 @@ filetype plugin indent on " Allow smart indentation and filetype detection
 set autoread " Auto re-read files that have changes outside of vim
 set bg=dark " Dark background
 set cmdheight=2 " Increase command line height
-set colorcolumn=120 " Vertical rule at 100 columns
+set colorcolumn=100 " Vertical rule at 100 columns
 set cursorline " highlight current line
 set lazyredraw
 set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
@@ -80,17 +81,26 @@ if has('termguicolors')
 endif
 "
 " preview page: https://chriskempson.github.io/base16/
+" bright
+" colorscheme base16-gruvbox-light-hard
+" colorscheme base16-default-light
+"
+" dark
 " colorscheme base16-atelier-plateau
 " colorscheme base16-brewer
+" colorscheme base16-gruvbox-dark-hard
+" colorscheme base16-gruvbox-dark-pale
 " colorscheme base16-gruvbox-light-hard
 " colorscheme base16-harmonic-dark
+" colorscheme base16-marrakesh
 " colorscheme base16-materia
 " colorscheme base16-material
 " colorscheme base16-mocha
 " colorscheme base16-pop
 " colorscheme base16-snazzy
+" colorscheme base16-solarized-dark
 " colorscheme base16-tomorrow-night
-colorscheme base16-marrakesh
+colorscheme base16-chalk
 
 "
 " base16-3024                       base16-black-metal-marduk  base16-gruvbox-dark-hard     base16-ocean
@@ -226,7 +236,7 @@ nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
 
 " refresh
-nnoremap <silent> <C-r> :call Boo()<CR>
+nnoremap <silent> <C-j> :call Boo()<CR>
 
 " explore
 nnoremap <silent> <C-e> :Explore<CR>

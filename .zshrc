@@ -93,3 +93,27 @@ zle -N accept-line
 
 # enable yarn executable path
 export PATH="$PATH:`yarn global bin`"
+
+up () {
+  branchName=`git branch | grep \* | cut -d ' ' -f2`
+  git co master && mint update && git co $branchName && git rebase master
+}
+
+merg () {
+  branchName=`git branch | grep \* | cut -d ' ' -f2`
+  git co master && git merge --squash $branchName && git ci -m "$1"
+}
+
+ship () {
+  git rd -r $1 && git submit --async
+}
+
+renew () {
+  if [ -d apps ]; then
+    exe='just yarn start'
+  else
+    exe="yarn start --port ${$1} --proxy=https://www.linkedin.com/"
+  fi
+  echo $exe
+  # mint update && just init --clean && just yarn start --port $1 --proxy=https://www.linkedin.com/
+}
