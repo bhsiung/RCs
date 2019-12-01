@@ -58,6 +58,11 @@ alias j='just'
 alias v='vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_CTRL_T_COMMAND='fd --type f'
+export FZF_CTRL_T_OPTS='--height 40% --layout=reverse --border --preview "cat {}"'
+
 
 # added by travis gem
 [ -f /Users/bhsiung/.travis/travis.sh ] && source /Users/bhsiung/.travis/travis.sh
@@ -108,6 +113,10 @@ ship () {
   git rd -r $1 && git submit --async
 }
 
+checkin() {
+  up && merg $1 && ship $2
+}
+
 renew () {
   if [ -d apps ]; then
     exe='just yarn start'
@@ -116,4 +125,8 @@ renew () {
   fi
   echo $exe
   # mint update && just init --clean && just yarn start --port $1 --proxy=https://www.linkedin.com/
+}
+
+tt() {
+  tailf $1 | grep "Log from external process" | sed -E 's/^([0-9]+\/[0-9]+\/[0-9]+ [0-9]+:[0-9]+:[0-9]+\.[0-9]+).*Log from external process:/\1/g'
 }

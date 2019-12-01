@@ -17,20 +17,18 @@ set ttyfast
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
+" fzf
+set rtp+=~/.fzf
+
 call vundle#begin()
-" Plugin 'airblade/vim-gitgutter' " Show git edit annotations in the gutter
 "Plugin 'coldnight/pretty_json.vim'
-Plugin 'mvolkmann/vim-js-arrow-function'
-Plugin 'tpope/vim-repeat'
 Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-abolish'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
-Plugin 'andrewradev/linediff.vim'
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
 Plugin 'chriskempson/base16-vim'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
@@ -49,11 +47,14 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()            " required
 
@@ -291,3 +292,6 @@ function! Boo()
   echo "applied " . colors
   execute "colorscheme " . colors
 endfunction
+
+"fzf
+imap <C-f> <plug>(fzf-complete-line)
