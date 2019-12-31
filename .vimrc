@@ -22,6 +22,9 @@ set rtp+=~/.fzf
 
 call vundle#begin()
 "Plugin 'coldnight/pretty_json.vim'
+Plugin 'mlaursen/vim-react-snippets'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'aquach/vim-http-client'
 Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-abolish'
 Bundle 'christoomey/vim-sort-motion'
@@ -101,7 +104,10 @@ endif
 " colorscheme base16-snazzy
 " colorscheme base16-solarized-dark
 " colorscheme base16-tomorrow-night
-colorscheme base16-chalk
+" colorscheme base16-chalk
+" colorscheme base16-atelier-dune
+colorscheme base16-woodland
+
 
 "
 " base16-3024                       base16-black-metal-marduk  base16-gruvbox-dark-hard     base16-ocean
@@ -132,7 +138,7 @@ colorscheme base16-chalk
 " base16-black-metal-bathory        base16-github              base16-mellow-purple         base16-twilight
 " base16-black-metal-burzum         base16-google-dark         base16-mexico-light          base16-unikitty-dark
 " base16-black-metal-dark-funeral   base16-google-light        base16-mocha                 base16-unikitty-light
-" base16-black-metal-gorgoroth      base16-grayscale-dark      base16-monokai               base16-woodland
+" base16-black-metal-gorgoroth      base16-grayscale-dark      base16-monokai
 " base16-black-metal-immortal       base16-grayscale-light     base16-nord                  base16-xcode-dusk
 " base16-black-metal-khold          base16-greenscreen         base16-oceanicnext           base16-zenburn
 
@@ -229,6 +235,11 @@ let g:indentLine_enabled = 1
 " Prettier
 "autocmd FileType javascript set formatprg=prettier\ --stdin
 "autocmd BufWritePre *.js :normal gggqG "If you want to format on save:
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#parser = 'babylon'
+
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
 " resize
 nnoremap <silent> <S-left> :vertical resize -10<CR>
@@ -246,7 +257,7 @@ nnoremap <silent> <C-e> :Explore<CR>
 " http://thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
 " manually turn on `:spelllang`
 " get suggestion: `z=`
-set spell
+set nospell
 set spelllang=en
 
 let g:VimPemberlyDebug = 0
@@ -295,3 +306,7 @@ endfunction
 
 "fzf
 imap <C-f> <plug>(fzf-complete-line)
+nmap <C-h> :History<CR>
+nmap <C-a> :Ag<CR>
+
+" hi Normal guibg=NONE ctermbg=NONE

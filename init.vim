@@ -2,6 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
+" fzf
+set rtp+=~/.fzf
+
 call vundle#begin()            " required
 Plugin 'VundleVim/Vundle.vim'  " required
 
@@ -11,7 +14,7 @@ Plugin 'VundleVim/Vundle.vim'  " required
 
 Bundle 'christoomey/vim-sort-motion'
 " Plugin 'roxma/vim-hug-neovim-rpc'
-" Plugin 'shougo/deoplete.nvim'
+
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
@@ -25,6 +28,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
+Plugin 'heavenshell/vim-jsdoc'
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'palantir/tslint'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
@@ -40,6 +44,8 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 
 " ===================
@@ -235,3 +241,6 @@ set spelllang=en
 
 " DEOPLETE.NVIM
 let g:deoplete#enable_at_startup = 1
+"
+"fzf
+imap <C-f> <plug>(fzf-complete-line)
