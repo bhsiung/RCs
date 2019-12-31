@@ -101,7 +101,10 @@ endif
 " colorscheme base16-snazzy
 " colorscheme base16-solarized-dark
 " colorscheme base16-tomorrow-night
-colorscheme base16-chalk
+" colorscheme base16-chalk
+" colorscheme base16-atelier-dune
+colorscheme base16-woodland
+
 
 "
 " base16-3024                       base16-black-metal-marduk  base16-gruvbox-dark-hard     base16-ocean
@@ -132,7 +135,7 @@ colorscheme base16-chalk
 " base16-black-metal-bathory        base16-github              base16-mellow-purple         base16-twilight
 " base16-black-metal-burzum         base16-google-dark         base16-mexico-light          base16-unikitty-dark
 " base16-black-metal-dark-funeral   base16-google-light        base16-mocha                 base16-unikitty-light
-" base16-black-metal-gorgoroth      base16-grayscale-dark      base16-monokai               base16-woodland
+" base16-black-metal-gorgoroth      base16-grayscale-dark      base16-monokai
 " base16-black-metal-immortal       base16-grayscale-light     base16-nord                  base16-xcode-dusk
 " base16-black-metal-khold          base16-greenscreen         base16-oceanicnext           base16-zenburn
 
@@ -295,3 +298,7 @@ endfunction
 
 "fzf
 imap <C-f> <plug>(fzf-complete-line)
+nmap <C-h> :History<CR>
+nmap <C-a> :Ag<CR>
+
+" hi Normal guibg=NONE ctermbg=NONE
