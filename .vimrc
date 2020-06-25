@@ -21,6 +21,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 
 call vundle#begin()
+Plugin 'matchit.zip'
+Plugin 'mvolkmann/vim-js-arrow-function'
 "Plugin 'coldnight/pretty_json.vim'
 Plugin 'mlaursen/vim-react-snippets'
 Plugin 'maxmellon/vim-jsx-pretty'
@@ -65,7 +67,7 @@ filetype plugin indent on " Allow smart indentation and filetype detection
 set autoread " Auto re-read files that have changes outside of vim
 set bg=dark " Dark background
 set cmdheight=2 " Increase command line height
-set colorcolumn=100 " Vertical rule at 100 columns
+set colorcolumn=90 " Vertical rule at 100 columns
 set cursorline " highlight current line
 set lazyredraw
 set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
@@ -198,6 +200,10 @@ let g:syntastic_enable_perl_checker = 1
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Respect .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$\|i18n',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
 
 " vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
@@ -217,7 +223,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:ackhighlight = 1
 if executable('ag')
   " Use ag (the silver searcher) if it's installed
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --path-to-ignore ~/.ignore'
 endif
 
 
@@ -278,7 +284,7 @@ let g:javascript_plugin_jsdoc = 1
 "set conceallevel=1
 
 " sass folding
-autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
+" autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -310,3 +316,6 @@ nmap <C-h> :History<CR>
 nmap <C-a> :Ag<CR>
 
 " hi Normal guibg=NONE ctermbg=NONE
+
+" treat dash as part of word
+set iskeyword+=-
