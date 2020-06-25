@@ -6,7 +6,7 @@ export EDITOR=/usr/bin/vim
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="blinks"
-plugins=(git npm sudo ssh-agent Z zsh-autosuggestions)
+plugins=(git npm sudo ssh-agent Z)
 
 source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/local/bin/vim ]]; then
@@ -99,6 +99,44 @@ zle -N accept-line
 # enable yarn executable path
 export PATH="$PATH:`yarn global bin`"
 
+ontsweb() {
+  mpName=`pwd|sed 's/.*\(ember-ts-.*\)_trunk$/\1/'`
+  files=`git show --pretty="" --name-only|grep '^addon'`
+  local IFS=$'\n'
+
+  if [ $ZSH_VERSION ]; then
+    setopt sh_word_split
+  fi
+
+  for f in $files; do
+    cp $f ~/ts-web/node_modules/@linkedin/$mpName/$f
+  done;
+
+  cd ~/ts-web
+  echo "\n" >> app/router.js
+  git co -- app/router.js
+  cd ~/$mpName"_trunk"
+}
+
+onconsumer() {
+  mpName=`pwd|sed 's/.*\(ember-ts-.*\)_trunk$/\1/'`
+  files=`git show --pretty="" --name-only|grep '^addon'`
+  local IFS=$'\n'
+
+  if [ $ZSH_VERSION ]; then
+    setopt sh_word_split
+  fi
+
+  for f in $files; do
+    cp $f ~/$1/node_modules/@linkedin/$mpName/$f
+  done;
+
+  cd ~/$1
+  echo "\n" >> tests/dummy/app/router.js
+  git co -- tests/dummy/app/router.js
+  cd ~/$mpName"_trunk"
+}
+
 up () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
   git co master && mint update && git co $branchName && git rebase master
@@ -107,6 +145,11 @@ up () {
 merg () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
   git co master && git merge --squash $branchName && git ci -m "$1"
+}
+
+toGerrit() {
+  hash=`git log --pretty=format:"%H" $1 |head -n 1`
+  echo "https://git.corp.linkedin.com:1367/a/plugins/gitiles/talent-solutions/ember-ts-job-posting/+/$hash/$1"
 }
 
 ship () {
@@ -130,3 +173,14 @@ renew () {
 tt() {
   tailf $1 | grep "Log from external process" | sed -E 's/^([0-9]+\/[0-9]+\/[0-9]+ [0-9]+:[0-9]+:[0-9]+\.[0-9]+).*Log from external process:/\1/g'
 }
+
+# enable node 12.13.0
+. ~/.profile
+# for v-web
+export NODE_OPTIONS="--max-old-space-size=8192"
+export VOLTA_HOME="/home/bhsiung/.volta"
+grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
+
+
+# ag
+alias ag='ag --path-to-ignore ~/.ignore'
