@@ -21,6 +21,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 
 call vundle#begin()
+Plugin 'kamykn/spelunker.vim'
 Plugin 'matchit.zip'
 Plugin 'mvolkmann/vim-js-arrow-function'
 "Plugin 'coldnight/pretty_json.vim'
@@ -39,7 +40,7 @@ Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mhinz/vim-signify'
+Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
@@ -256,6 +257,13 @@ nnoremap <silent> <C-e> :Explore<CR>
 " manually turn on `:spelllang`
 " get suggestion: `z=`
 set nospell
+
+" Enable spelunker.vim. (default: 1)
+" 1: enable
+" 0: disable
+let g:enable_spelunker_vim = 1
+let g:enable_spelunker_vim_on_readonly = 0
+
 set spelllang=en
 
 let g:VimPemberlyDebug = 0
