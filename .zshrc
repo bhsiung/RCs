@@ -5,8 +5,11 @@ export TERM=xterm-256color
 export EDITOR=/usr/bin/vim
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-ZSH_THEME="blinks"
-plugins=(git npm sudo ssh-agent Z)
+# ZSH_THEME="blinks"
+# ZSH_THEME="af-magic"
+ZSH_THEME="geoffgarside"
+# plugins=(git npm ssh-agent Z)
+plugins=(git ssh-agent Z)
 
 source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/local/bin/vim ]]; then
@@ -67,8 +70,8 @@ export FZF_CTRL_T_OPTS='--height 40% --layout=reverse --border --preview "cat {}
 # added by travis gem
 [ -f /Users/bhsiung/.travis/travis.sh ] && source /Users/bhsiung/.travis/travis.sh
 
-alias tmux="TERM=screen-256color-bce tmux -CC"
-alias tmux2="TERM=xterm-256color-bce tmux -CC"
+# alias tmux="TERM=screen-256color-bce tmux -CC"
+# alias tmux2="TERM=xterm-256color-bce tmux -CC"
 
 # zsh-sticky-prefix
 
@@ -147,6 +150,12 @@ merg () {
   git co master && git merge --squash $branchName && git ci -m "$1"
 }
 
+to-gerrit() {
+  path=`echo "$1" | sed -e 's/^.*\?name=//' -e 's/&path.*//'`
+  f=`echo "$1" | sed -e 's/.*addon/addon/' -e 's/&.*$//' -e 's/%2F/\//'`
+  hash=`git log --pretty=format:"%H" $path$f |head -n 1`
+  echo "https://git.corp.linkedin.com:1367/a/plugins/gitiles/talent-solutions/ember-ts-job-posting/+/$hash/$1"
+}
 toGerrit() {
   hash=`git log --pretty=format:"%H" $1 |head -n 1`
   echo "https://git.corp.linkedin.com:1367/a/plugins/gitiles/talent-solutions/ember-ts-job-posting/+/$hash/$1"
@@ -175,7 +184,10 @@ tt() {
 }
 
 # enable node 12.13.0
-. ~/.profile
+if [[ -a ~/.profile ]]; then
+  . ~/.profile
+fi
+
 # for v-web
 export NODE_OPTIONS="--max-old-space-size=8192"
 export VOLTA_HOME="/home/bhsiung/.volta"

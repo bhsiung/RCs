@@ -14,4 +14,4 @@
 	rd = review dcommit
 	ru = review update
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim

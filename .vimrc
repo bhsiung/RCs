@@ -24,29 +24,31 @@ call vundle#begin()
 Plugin 'kamykn/spelunker.vim'
 Plugin 'matchit.zip'
 Plugin 'mvolkmann/vim-js-arrow-function'
-"Plugin 'coldnight/pretty_json.vim'
+Plugin 'jimmyhchan/dustjs.vim'
+" Plugin 'mlaursen/vim-react-snippets'
+" Plugin 'maxmellon/vim-jsx-pretty'
+" Plugin 'aquach/vim-http-client'
 Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-abolish'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/nrrwrgn'
-Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'kien/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
+" Plugin 'leafgarland/typescript-vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
-Plugin 'palantir/tslint'
+" Plugin 'palantir/tslint'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
-Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -54,8 +56,8 @@ Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'tpope/vim-surround'
+" Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
@@ -106,7 +108,7 @@ endif
 " colorscheme base16-tomorrow-night
 " colorscheme base16-chalk
 " colorscheme base16-atelier-dune
-colorscheme base16-woodland
+" colorscheme base16-woodland
 
 
 "
@@ -239,6 +241,11 @@ let g:indentLine_enabled = 1
 " Prettier
 "autocmd FileType javascript set formatprg=prettier\ --stdin
 "autocmd BufWritePre *.js :normal gggqG "If you want to format on save:
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#parser = 'babylon'
+
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
 " resize
 nnoremap <silent> <S-left> :vertical resize -10<CR>
@@ -272,7 +279,6 @@ let g:VimPemberlyDebug = 0
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
 " vim javascript
 let g:javascript_plugin_jsdoc = 1
 "augroup javascript_folding
@@ -304,11 +310,11 @@ set splitright
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 
-function! Boo()
-  let colors = substitute(system('ls ~/.vim/bundle/base16-vim/colors/ |sort -R |tail -n 1'),".vim.*$","","")
-  echo "applied " . colors
-  execute "colorscheme " . colors
-endfunction
+" function! Boo()
+  " let colors = substitute(system('ls ~/.vim/bundle/base16-vim/colors/ |sort -R |tail -n 1'),".vim.*$","","")
+  " echo "applied " . colors
+  " execute "colorscheme " . colors
+" endfunction
 
 "fzf
 imap <C-f> <plug>(fzf-complete-line)
