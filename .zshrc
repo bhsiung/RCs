@@ -9,7 +9,11 @@ export ZSH=~/.oh-my-zsh
 # ZSH_THEME="af-magic"
 ZSH_THEME="geoffgarside"
 # plugins=(git npm ssh-agent Z)
-plugins=(git ssh-agent Z)
+plugins=(
+  git
+  ssh-agent
+  z
+)
 
 source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/local/bin/vim ]]; then
@@ -142,7 +146,7 @@ onconsumer() {
 
 up () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
-  git co master && mint update && git co $branchName && git rebase master
+  git co master && git pull --rebase && git co $branchName && git rebase master
 }
 
 merg () {
@@ -190,9 +194,9 @@ fi
 
 # for v-web
 export NODE_OPTIONS="--max-old-space-size=8192"
-export VOLTA_HOME="/home/bhsiung/.volta"
-grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
 
 
 # ag
 alias ag='ag --path-to-ignore ~/.ignore'
+export VOLTA_HOME="/home/bhsiung/.volta"
+grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
