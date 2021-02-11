@@ -194,16 +194,6 @@ let g:syntastic_warning_symbol = '醜'
 " let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:syntastic_enable_perl_checker = 1
 
-" ctrlpvim/ctrlp.vim
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules*,*.properties,i18n/*,.git/*,/*.git/build/*
-" Respect .gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$\|i18n',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.properties$'
-  \ }
-
 " vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
