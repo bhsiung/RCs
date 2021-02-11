@@ -198,5 +198,5 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 
 # ag
 alias ag='ag --path-to-ignore ~/.ignore'
-export VOLTA_HOME="/home/bhsiung/.volta"
-grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

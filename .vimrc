@@ -39,11 +39,9 @@ Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'kien/ctrlp.vim'
 " Plugin 'leafgarland/typescript-vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
-Plugin 'mileszs/ack.vim'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 " Plugin 'palantir/tslint'
@@ -321,6 +319,7 @@ let g:NERDSpaceDelims = 1
 imap <C-f> <plug>(fzf-complete-line)
 nmap <C-h> :History<CR>
 nmap <C-a> :Ag<CR>
+nmap <C-p> :GFiles<CR>
 
 " hi Normal guibg=NONE ctermbg=NONE
 
