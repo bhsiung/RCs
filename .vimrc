@@ -160,7 +160,7 @@ let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
 let g:prettier#config#parser = 'babylon'
 
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
 " resize
 nnoremap <silent> <S-left> :vertical resize -10<CR>
