@@ -25,9 +25,6 @@ Plugin 'kamykn/spelunker.vim'
 Plugin 'matchit.zip'
 Plugin 'mvolkmann/vim-js-arrow-function'
 Plugin 'jimmyhchan/dustjs.vim'
-" Plugin 'mlaursen/vim-react-snippets'
-" Plugin 'maxmellon/vim-jsx-pretty'
-" Plugin 'aquach/vim-http-client'
 Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-abolish'
 Bundle 'christoomey/vim-sort-motion'
@@ -39,12 +36,10 @@ Plugin 'eslint/eslint'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
-" Plugin 'leafgarland/typescript-vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
-" Plugin 'palantir/tslint'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 " Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
@@ -54,7 +49,6 @@ Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-surround'
 " Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
@@ -147,15 +141,6 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-
-
-" mileszs/ack.vim
-let g:ackhighlight = 1
-if executable('ag')
-  " Use ag (the silver searcher) if it's installed
-  let g:ackprg = 'ag --vimgrep --path-to-ignore ~/.ignore'
-endif
-
 
 " heavenshell/vim-jsdoc
 let g:jsdoc_allow_input_prompt = 1
