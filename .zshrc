@@ -146,7 +146,8 @@ onconsumer() {
 
 up () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
-  git co master && git pull --rebase && git co $branchName && git rebase master
+  # git co master && git pull --rebase && git co $branchName && git merge master
+  git fetch --all && git pull --rebase && git merge origin/master
 }
 
 merg () {

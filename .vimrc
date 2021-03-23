@@ -1,3 +1,4 @@
+"
 "          __                              ___   __        .ama     ,
 "       ,d888a                          ,d88888888888ba.  ,88"I)   d
 "      a88']8i                         a88".8"8)   `"8888:88  " _a8'
@@ -12,6 +13,8 @@
 " `888a,.  ,aadd88888888888bma.   )88,  ,]I I8, .d' )88a8B ,d8 aI
 "   "888888PP"'        `8""""""8   "888PP'  `888P'  `88P"88P"8m"
 
+
+
 set nocompatible              " be iMproved, required
 set ttyfast
 filetype off                  " required
@@ -20,38 +23,47 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " fzf
 set rtp+=~/.fzf
 
+" call plug#begin('~/.vim/plugged')
+call plug#begin()
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+" Plug 'prabirshrestha/asyncomplete.vim' " Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+call plug#end()
+
+
 call vundle#begin()
-Plugin 'kamykn/spelunker.vim'
-Plugin 'matchit.zip'
-Plugin 'mvolkmann/vim-js-arrow-function'
-Plugin 'jimmyhchan/dustjs.vim'
-Plugin 'prettier/vim-prettier'
-Plugin 'tpope/vim-abolish'
+Plugin 'sheerun/vim-polyglot'
 Bundle 'christoomey/vim-sort-motion'
-Plugin 'Yggdroot/indentLine' " Indent guide lines
 Plugin 'bling/vim-airline'
-Plugin 'chrisbra/nrrwrgn'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'eslint/eslint'
+" Plugin 'flazz/vim-colorschemes'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'kamykn/spelunker.vim'
+Plugin 'mvolkmann/vim-js-arrow-function'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
-" Plugin 'ryanoasis/vim-devicons'
+Plugin 'prettier/vim-prettier'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
-Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+" Plugin 'chrisbra/nrrwrgn'
+" Plugin 'jimmyhchan/dustjs.vim'
+" Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'matchit.zip'
+" Plugin 'Yggdroot/indentLine' " Indent guide lines
 
 call vundle#end()            " required
 
@@ -59,11 +71,11 @@ filetype plugin indent on " Allow smart indentation and filetype detection
 set autoread " Auto re-read files that have changes outside of vim
 set bg=dark " Dark background
 set cmdheight=2 " Increase command line height
-set colorcolumn=90 " Vertical rule at 100 columns
+" set colorcolumn=90 " Vertical rule at 100 columns
+highlight ColorColumn guibg=DarkGray
 set cursorline " highlight current line
 set lazyredraw
 set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
-set fillchars+=vert:\┋ " Solid pipe character for window split icon
 set hidden " Allow 'hidden' buffers
 set lazyredraw " Don't redraw while executing macros
 "set mouse=a " Turn on the mouse ;)
@@ -106,28 +118,21 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " strip trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 " scrooloose/syntastic settings
+nnoremap <leader>s :SyntasticCheck<Cr>
 let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
 let g:syntastic_scss_eslint_exec = '$PWD/node_modules/.bin/stylelint'
 let g:syntastic_sass_eslint_exec = '$PWD/node_modules/.bin/stylelint'
 let g:syntastic_scss_checkers = ['stylelint']
-" let g:syntastic_javascript_eslint_exec = '~/voyager-web_trunk/node_modules/.bin/eslint'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_mode_map = { 'mode': 'passive' }
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '錯'
-let g:syntastic_style_error_symbol = '孬'
-let g:syntastic_style_warning_symbol = '弱'
-let g:syntastic_warning_symbol = '醜'
-" let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_enable_perl_checker = 1
 
 " vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
@@ -169,7 +174,10 @@ nnoremap <silent> <S-up> :resize +10<CR>
 nnoremap <silent> <S-down> :resize -10<CR>
 
 " refresh
-nnoremap <silent> <C-j> :call Boo()<CR>
+nnoremap <leader>j :call RandomizeColorScheme()<CR>
+
+" open rc
+nnoremap <leader>i :sp ~/.vimrc<Cr>
 
 " explore
 nnoremap <silent> <C-e> :Explore<CR>
@@ -179,21 +187,27 @@ nnoremap <silent> <C-e> :Explore<CR>
 " manually turn on `:spelllang`
 " get suggestion: `z=`
 set nospell
-
 " Enable spelunker.vim. (default: 1)
 " 1: enable
 " 0: disable
-let g:enable_spelunker_vim = 1
+let g:enable_spelunker_vim = 0
 let g:enable_spelunker_vim_on_readonly = 0
+" Correct all words in buffer.  ZL
+" Correct word under cursor.  Zl
+" Correct all words in buffer.  ZC
+" Correct word under cursor.  Zc
+" Correct all words in buffer.  ZF
+" Correct word under cursor.  Zf
+" Add selected word to spellfile ZG
+" Jump cursor to next misspelled words.  ZN
+" Jump cursor to previous misspelled words.  ZP
+" Toggle to enable or disable.  ZT
+" Toggle to enable or disable only the current buffer.  Zt
 
 set spelllang=en
 
 let g:VimPemberlyDebug = 0
 
-" CTRLP-FUNKY
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " vim javascript
 let g:javascript_plugin_jsdoc = 1
 "augroup javascript_folding
@@ -221,23 +235,62 @@ nmap ,m :NERDTreeToggle<CR>
 " split
 set splitbelow
 set splitright
+" set fillchars=stl:-,stlnc:=,vert:\ ,fold:-,diff:-
+" set fillchars=\ ,
+" set fillchars+=vert:\┋ " Solid pipe character for window split icon
+
+" split screen custimization
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 
-" function! Boo()
-  " let colors = substitute(system('ls ~/.vim/bundle/base16-vim/colors/ |sort -R |tail -n 1'),".vim.*$","","")
+function! RandomizeColorScheme()
+  let colors = substitute(system('ls ~/.vim/bundle/vim-colorschemes/colors |sort -R |tail -n 1'),".vim.*$","","")
   " echo "applied " . colors
-  " execute "colorscheme " . colors
-" endfunction
+  execute "color"
+  execute "colorscheme " . colors
+endfunction
+
+" colorscheme spring-night
+" colorscheme birds-of-paradise
+" colorscheme elisex
 
 "fzf
 imap <C-f> <plug>(fzf-complete-line)
-nmap <C-h> :History<CR>
 nmap <C-a> :Ag<CR>
-nmap <C-p> :GFiles<CR>
+nmap <C-p> :GFile<CR>
 
 " hi Normal guibg=NONE ctermbg=NONE
 
 " treat dash as part of word
 set iskeyword+=-
+
+" ASYNCOMPLETE.VIM
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" let g:asyncomplete_auto_popup = 1
+
+" au User lsp_setup call lsp#register_server({
+  " \ 'name': 'javascript support using typescript-language-server',
+  " \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+  " \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+  " \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+  " \ })
+  "
+  "
+  "
+
+
+" https://github.com/pineapplegiant/spaceduck
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+colorscheme spaceduck
