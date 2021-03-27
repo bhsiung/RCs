@@ -32,25 +32,25 @@ call plug#end()
 
 
 call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'eslint/eslint'
+" Plugin 'eslint/eslint'
 " Plugin 'flazz/vim-colorschemes'
-Plugin 'gmarik/Vundle.vim'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'kamykn/spelunker.vim'
-Plugin 'mvolkmann/vim-js-arrow-function'
+" Plugin 'mvolkmann/vim-js-arrow-function'
 Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
-Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
+" Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'prettier/vim-prettier'
-Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'

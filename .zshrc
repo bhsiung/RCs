@@ -18,8 +18,10 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/local/bin/vim ]]; then
   # for REHL
-  alias vi='/usr/local/bin/vim'
-  alias vim='/usr/local/bin/vim'
+  # alias vi='/usr/local/bin/vim'
+  # alias vim='/usr/local/bin/vim'
+  alias vi='/usr/bin/nvim.appimage'
+  alias vim='/usr/bin/nvim.appimage'
 else
   # for ubuntu
   alias vi='/usr/bin/vim'
@@ -146,8 +148,8 @@ onconsumer() {
 
 up () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
-  # git co master && git pull --rebase && git co $branchName && git merge master
-  git fetch --all && git pull --rebase && git merge origin/master
+  git co master && git pull && git co $branchName && git rebase master
+  # git fetch --all && git pull --rebase && git merge origin/master
 }
 
 merg () {
