@@ -253,7 +253,7 @@ let g:NERDSpaceDelims = 1
   set t_Co=256
 endif
  let g:lightline = {
-       \ 'colorscheme': 'seoul256',
+       \ 'colorscheme': 'spaceduck',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]

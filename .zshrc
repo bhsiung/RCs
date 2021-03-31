@@ -20,8 +20,8 @@ if [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
   # alias vim='/usr/local/bin/vim'
-  alias vi='/usr/bin/nvim.appimage'
-  alias vim='/usr/bin/nvim.appimage'
+  alias vi='/usr/local/bin/nvim'
+  alias vim='/usr/local/bin/nvim'
 else
   # for ubuntu
   alias vi='/usr/bin/vim'
@@ -78,6 +78,7 @@ export FZF_CTRL_T_OPTS='--height 40% --layout=reverse --border --preview "cat {}
 
 # alias tmux="TERM=screen-256color-bce tmux -CC"
 # alias tmux2="TERM=xterm-256color-bce tmux -CC"
+alias tmux-ts="ssh -t bhsiung-ld1 tmux -CC a -t ts"
 
 # zsh-sticky-prefix
 
