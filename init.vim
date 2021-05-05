@@ -9,7 +9,7 @@ set rtp+=~/.fzf
 " call plug#begin('~/.vim/plugged')
 call plug#begin()
 Plug 'mhinz/vim-startify'
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+" Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
 call plug#end()
@@ -17,6 +17,7 @@ call plug#end()
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
+Bundle 'sonph/onehalf', {'rtp': 'vim/'}
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'eslint/eslint'
@@ -218,20 +219,37 @@ let g:NERDSpaceDelims = 1
 
 
 " " https://github.com/pineapplegiant/spaceduck
- if exists('+termguicolors')
-   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-   set termguicolors
- endif
+ " if exists('+termguicolors')
+   " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+   " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   " set termguicolors
+ " endif
 
- colorscheme spaceduck
+ " colorscheme spaceduck
 
- "lightline
- if !has('gui_running')
+ " "lightline
+ " if !has('gui_running')
+  " set t_Co=256
+" endif
+ " let g:lightline = {
+       " \ 'colorscheme': 'spaceduck',
+       " \ 'active': {
+       " \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+       " \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
+       " \  }
+       " \}
+" set noshowmode
+" set updatetime=100
+
+" onehalflight
+" colorscheme onehalflight
+colorscheme onehalfdark
+" lightline
+if !has('gui_running')
   set t_Co=256
 endif
  let g:lightline = {
-       \ 'colorscheme': 'spaceduck',
+       \ 'colorscheme': 'onehalfdark',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
@@ -239,7 +257,6 @@ endif
        \}
 set noshowmode
 set updatetime=100
-
 
 "startify
 "" returns all modified files of the current git repo
