@@ -16,7 +16,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-if [[ -a /usr/local/bin/vim ]]; then
+if [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
+  alias vi='/Users/bhsiung/nvim-osx64/bin/nvim'
+elif [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
   # alias vim='/usr/local/bin/vim'
