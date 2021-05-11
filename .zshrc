@@ -7,7 +7,8 @@ export EDITOR=/usr/bin/vim
 export ZSH=~/.oh-my-zsh
 # ZSH_THEME="blinks"
 # ZSH_THEME="af-magic"
-ZSH_THEME="geoffgarside"
+# ZSH_THEME="geoffgarside"
+ZSH_THEME="theunraveler"
 # plugins=(git npm ssh-agent Z)
 plugins=(
   git
