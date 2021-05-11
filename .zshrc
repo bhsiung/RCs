@@ -11,6 +11,10 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="theunraveler"
 # plugins=(git npm ssh-agent Z)
 plugins=(
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+  zsh-syntax-highlighting
+  # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
+  zsh-autosuggestions
   git
   ssh-agent
   z
@@ -210,3 +214,4 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 alias ag='ag --path-to-ignore ~/.ignore'
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
