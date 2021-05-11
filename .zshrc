@@ -17,14 +17,17 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-if [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
+if [[ -a /usr/bin/nvim.appimage ]]; then
+  alias vi='/usr/bin/nvim.appimage'
+  alias vim='/usr/bin/nvim.appimage'
+elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
   alias vi='/Users/bhsiung/nvim-osx64/bin/nvim'
 elif [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
   # alias vim='/usr/local/bin/vim'
-  alias vi='/usr/local/bin/nvim'
-  alias vim='/usr/local/bin/nvim'
+  alias vi='/usr/local/bin/vim'
+  alias vim='/usr/local/bin/vim'
 else
   # for ubuntu
   alias vi='/usr/bin/vim'
