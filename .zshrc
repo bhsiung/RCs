@@ -18,6 +18,10 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git npm ssh-agent Z)
 plugins=(
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+  zsh-syntax-highlighting
+  # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
+  zsh-autosuggestions
   git
   ssh-agent
   z
