@@ -9,7 +9,6 @@ export TERM=xterm-256color
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export EDITOR=/usr/bin/vim
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 # ZSH_THEME="blinks"
@@ -28,18 +27,22 @@ source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/bin/nvim.appimage ]]; then
   alias vi='/usr/bin/nvim.appimage'
   alias vim='/usr/bin/nvim.appimage'
+  export EDITOR=/usr/bin/nvim.appimage
 elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
   alias vi='/Users/bhsiung/nvim-osx64/bin/nvim'
+  export EDITOR=/Users/bhsiung/nvim-osx64/bin/nvim
 elif [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
   # alias vim='/usr/local/bin/vim'
   alias vi='/usr/local/bin/vim'
   alias vim='/usr/local/bin/vim'
+  export EDITOR=/usr/local/bin/vim
 else
   # for ubuntu
   alias vi='/usr/bin/vim'
   alias vim='/usr/bin/vim'
+  export EDITOR=/usr/bin/vim
 fi
 
 # for powerline-shell
