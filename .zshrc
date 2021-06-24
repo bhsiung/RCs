@@ -29,25 +29,31 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 if [[ -a /usr/bin/nvim.appimage ]]; then
-  alias vi='/usr/bin/nvim.appimage'
+  alias v='/usr/bin/nvim.appimage'
   alias vim='/usr/bin/nvim.appimage'
   export EDITOR=/usr/bin/nvim.appimage
 elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
-  alias vi='/Users/bhsiung/nvim-osx64/bin/nvim'
+  alias v='/Users/bhsiung/nvim-osx64/bin/nvim'
   export EDITOR=/Users/bhsiung/nvim-osx64/bin/nvim
+elif [[ -a /usr/local/bin/nvim ]]; then
+  alias v='/usr/local/bin/nvim'
+  alias vim='/usr/local/bin/nvim'
+  export EDITOR=/usr/local/bin/nvim
 elif [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
   # alias vim='/usr/local/bin/vim'
-  alias vi='/usr/local/bin/vim'
+  alias v='/usr/local/bin/vim'
   alias vim='/usr/local/bin/vim'
   export EDITOR=/usr/local/bin/vim
 else
   # for ubuntu
-  alias vi='/usr/bin/vim'
+  alias v='/usr/bin/vim'
   alias vim='/usr/bin/vim'
   export EDITOR=/usr/bin/vim
 fi
+
+alias vo='nvim -u ~/.config/nvim/init.simple.vim'
 
 # for powerline-shell
 # function powerline_precmd() {
@@ -84,8 +90,7 @@ alias killphantom='killall -9 phantomjs-2.0.0-li2-osx.bin && echo "phantom kille
 alias jsfuck='killjava; killnode; killember; killphantom'
 alias killjs='killjava; killnode; killember; killphantom'
 alias g='git'
-alias j='just'
-alias v='vim'
+alias v='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
