@@ -9,14 +9,17 @@ set rtp+=~/.fzf
 " call plug#begin('~/.vim/plugged')
 call plug#begin()
 Plug 'mhinz/vim-startify'
-" Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
+"Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-flow.vim'
 call plug#end()
+
 
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
-Bundle 'sonph/onehalf', {'rtp': 'vim/'}
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'eslint/eslint'
@@ -27,13 +30,14 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'kamykn/spelunker.vim'
 " Plugin 'mvolkmann/vim-js-arrow-function'
-" Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
+Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 " Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'prettier/vim-prettier'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
@@ -54,6 +58,7 @@ call vundle#end()            " required
 " " set colorcolumn=90 " Vertical rule at 100 columns
 " highlight ColorColumn guibg=DarkGray
 "set cursorline " highlight current line
+ set encoding=utf8 " Set charset to utf8 (Necessary for fancy icon plugins)
 " set hidden " Allow 'hidden' buffers
 " set lazyredraw " Don't redraw while executing macros
 " "set mouse=a " Turn on the mouse ;)
@@ -76,6 +81,7 @@ call vundle#end()            " required
 
 " " Swap/Backup file settings
  set noswapfile " no more weirdo swap files
+ set nobackup " no more weirdo backup files
  set backupdir=~/.backup " Where backups would go if we had them
  set dir=~/.swap " Where swap files would go if we had them
 
@@ -94,6 +100,25 @@ call vundle#end()            " required
 
 " " strip trailing whitespace on save
 " autocmd BufWritePre * %s/\s\+$//e
+
+" " scrooloose/syntastic settings
+nnoremap <leader>s :SyntasticCheck<Cr>
+let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
+let g:syntastic_scss_eslint_exec = '$PWD/node_modules/.bin/stylelint'
+let g:syntastic_sass_eslint_exec = '$PWD/node_modules/.bin/stylelint'
+let g:syntastic_scss_checkers = ['stylelint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_mode_map = { 'mode': 'passive' }
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:signify_sign_overwrite = 0
+
 
 " " heavenshell/vim-jsdoc
  let g:jsdoc_allow_input_prompt = 1
@@ -218,37 +243,20 @@ let g:NERDSpaceDelims = 1
 
 
 " " https://github.com/pineapplegiant/spaceduck
- " if exists('+termguicolors')
-   " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-   " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-   " set termguicolors
- " endif
+ if exists('+termguicolors')
+   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   set termguicolors
+ endif
 
- " colorscheme spaceduck
+ colorscheme spaceduck
 
- " "lightline
- " if !has('gui_running')
-  " set t_Co=256
-" endif
- " let g:lightline = {
-       " \ 'colorscheme': 'spaceduck',
-       " \ 'active': {
-       " \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-       " \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
-       " \  }
-       " \}
-" set noshowmode
-" set updatetime=100
-
-" onehalflight
-" colorscheme onehalflight
-colorscheme onehalfdark
-" lightline
-if !has('gui_running')
+ "lightline
+ if !has('gui_running')
   set t_Co=256
 endif
  let g:lightline = {
-       \ 'colorscheme': 'onehalfdark',
+       \ 'colorscheme': 'spaceduck',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
@@ -256,6 +264,7 @@ endif
        \}
 set noshowmode
 set updatetime=100
+
 
 "startify
 "" returns all modified files of the current git repo
