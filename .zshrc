@@ -14,8 +14,8 @@ export ZSH=~/.oh-my-zsh
 # ZSH_THEME="blinks"
 # ZSH_THEME="af-magic"
 # ZSH_THEME="geoffgarside"
-# ZSH_THEME="theunraveler"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="theunraveler"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git npm ssh-agent Z)
 plugins=(
   # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
