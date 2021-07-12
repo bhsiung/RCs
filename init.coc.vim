@@ -11,6 +11,8 @@ call plug#begin()
 Plug 'mhinz/vim-startify'
 " Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'morhetz/gruvbox'
+Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'itchyny/lightline.vim'
 call plug#end()
 
@@ -20,8 +22,6 @@ Plugin 'sheerun/vim-polyglot'
 Bundle 'sonph/onehalf', {'rtp': 'vim/'}
 Bundle 'christoomey/vim-sort-motion'
 Plugin 'editorconfig/editorconfig-vim'
-" Plugin 'eslint/eslint'
-" Plugin 'flazz/vim-colorschemes'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'junegunn/fzf'
@@ -31,15 +31,14 @@ Plugin 'kamykn/spelunker.vim'
 " Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
 Plugin 'othree/jsdoc-syntax.vim'
 " Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
-Plugin 'prettier/vim-prettier'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
-Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
+" Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
 Plugin 'sukima/vim-javascript-imports'
 Plugin 'sukima/vim-ember-imports'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-abolish'
+" Plugin 'tpope/vim-fugitive'
 " Plugin 'chrisbra/nrrwrgn'
 " Plugin 'jimmyhchan/dustjs.vim'
 " Plugin 'maksimr/vim-jsbeautify'
@@ -107,12 +106,6 @@ call vundle#end()            " required
 " let g:indentLine_char = '┊'
 " let g:indentLine_enabled = 1
 
- " Prettier
- "autocmd FileType javascript set formatprg=prettier\ --stdin
- "autocmd BufWritePre *.js :normal gggqG "If you want to format on save:
- let g:prettier#autoformat = 0
- let g:prettier#exec_cmd_async = 1
- let g:prettier#config#parser = 'babylon'
 
 " " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
@@ -227,29 +220,21 @@ let g:NERDSpaceDelims = 1
 
  " colorscheme spaceduck
 
- " "lightline
- " if !has('gui_running')
-  " set t_Co=256
-" endif
- " let g:lightline = {
-       " \ 'colorscheme': 'spaceduck',
-       " \ 'active': {
-       " \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-       " \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
-       " \  }
-       " \}
 " set noshowmode
 " set updatetime=100
 
 " onehalflight
 " colorscheme onehalflight
-colorscheme onehalfdark
+" colorscheme onehalfdark
+" colorscheme jellybeans
+" colorscheme molokai
+colorscheme gruvbox
 " lightline
 if !has('gui_running')
   set t_Co=256
 endif
  let g:lightline = {
-       \ 'colorscheme': 'onehalfdark',
+       \ 'colorscheme': 'gruvbox',
        \ 'active': {
        \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
        \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
@@ -284,6 +269,7 @@ let g:startify_lists = [
         \ ]
 
 " =================================== CoC -----------------------------------
+let g:coc_global_extensions = ['coc-css', 'coc-json', 'coc-git', 'coc-prettier', 'coc-eslint']
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -449,3 +435,50 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+" COC prettier settings
+" https://github.com/neoclide/coc-prettier
+autocmd User CocGitStatusChange {command}
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" vmap <leader>p  <Plug>(coc-format-selected)
+" nmap <leader>p  <Plug>(coc-format-selected)
+nnoremap <leader>p :Prettier<CR>
+
+" jellybean colorscheme
+" let g:jellybeans_overrides = {
+" \    'background': { 'guibg': 'FFFFFF' },
+" \}
+"
+" COC github
+" https://github.com/neoclide/coc-git
+" lightline
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \ }
+\ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)

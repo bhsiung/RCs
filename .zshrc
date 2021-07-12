@@ -54,6 +54,7 @@ else
 fi
 
 alias vo='nvim -u ~/.config/nvim/init.simple.vim'
+alias vc='nvim -u ~/.config/nvim/init.coc.vim'
 
 # for powerline-shell
 # function powerline_precmd() {
