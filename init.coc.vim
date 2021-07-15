@@ -14,23 +14,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'sheerun/vim-polyglot'
 Bundle 'sonph/onehalf', {'rtp': 'vim/'}
 Bundle 'christoomey/vim-sort-motion'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'heavenshell/vim-jsdoc'
 Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
 Plugin 'kamykn/spelunker.vim'
 " Plugin 'mvolkmann/vim-js-arrow-function'
 " Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
-Plugin 'othree/jsdoc-syntax.vim'
-" Plugin 'pangloss/vim-javascript' " Better es6/es2015 syntax support
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plugin 'scrooloose/nerdtree'
@@ -95,12 +92,6 @@ call vundle#end()            " required
 " " strip trailing whitespace on save
 " autocmd BufWritePre * %s/\s\+$//e
 
-" " heavenshell/vim-jsdoc
- let g:jsdoc_allow_input_prompt = 1
- let g:jsdoc_input_description = 1
- let g:jsdoc_enable_es6 = 1
- let g:jsdoc_underscore_private = 1
- nmap <silent> <C-l> <Plug>(jsdoc)
 
 " " Yggdroot/indentLine
 " let g:indentLine_char = '┊'
@@ -183,6 +174,10 @@ let g:NERDSpaceDelims = 1
 " colorscheme spring-night
 " colorscheme birds-of-paradise
 " colorscheme elisex
+
+" vim-javascript
+" https://github.com/pangloss/vim-javascript
+let g:javascript_plugin_jsdoc = 1
 
  "fzf
  imap <C-f> <plug>(fzf-complete-line)
@@ -269,7 +264,7 @@ let g:startify_lists = [
         \ ]
 
 " =================================== CoC -----------------------------------
-let g:coc_global_extensions = ['coc-css', 'coc-json', 'coc-git', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-docthis', 'coc-tsserver', 'coc-css', 'coc-json', 'coc-git', 'coc-prettier', 'coc-eslint']
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8

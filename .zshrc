@@ -36,6 +36,8 @@ elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
   alias v='/Users/bhsiung/nvim-osx64/bin/nvim'
   export EDITOR=/Users/bhsiung/nvim-osx64/bin/nvim
 elif [[ -a /usr/local/bin/nvim ]]; then
+  # mac!!
+  eval "$(starship init zsh)"
   alias v='/usr/local/bin/nvim'
   alias vim='/usr/local/bin/nvim'
   export EDITOR=/usr/local/bin/nvim
@@ -231,6 +233,9 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 alias ag='ag --path-to-ignore ~/.ignore'
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
