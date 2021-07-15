@@ -32,15 +32,21 @@ if [[ -a /usr/bin/nvim.appimage ]]; then
   alias v='/usr/bin/nvim.appimage'
   alias vim='/usr/bin/nvim.appimage'
   export EDITOR=/usr/bin/nvim.appimage
+  alias vc='vim -u ~/.config/nvim/init.coc.vim'
+  alias vo='vim -u ~/.config/nvim/init.simple.vim'
 elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
   alias v='/Users/bhsiung/nvim-osx64/bin/nvim'
   export EDITOR=/Users/bhsiung/nvim-osx64/bin/nvim
+  alias vc='v -u ~/.config/nvim/init.coc.vim'
+  alias vo='v -u ~/.config/nvim/init.simple.vim'
 elif [[ -a /usr/local/bin/nvim ]]; then
   # mac!!
   eval "$(starship init zsh)"
   alias v='/usr/local/bin/nvim'
   alias vim='/usr/local/bin/nvim'
   export EDITOR=/usr/local/bin/nvim
+  alias vc='v -u ~/.config/nvim/init.coc.vim'
+  alias vo='v -u ~/.config/nvim/init.simple.vim'
 elif [[ -a /usr/local/bin/vim ]]; then
   # for REHL
   # alias vi='/usr/local/bin/vim'
@@ -55,8 +61,6 @@ else
   export EDITOR=/usr/bin/vim
 fi
 
-alias vo='nvim -u ~/.config/nvim/init.simple.vim'
-alias vc='nvim -u ~/.config/nvim/init.coc.vim'
 
 # for powerline-shell
 # function powerline_precmd() {

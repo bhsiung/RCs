@@ -13,6 +13,7 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'APZelos/blamer.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf'
@@ -477,3 +478,10 @@ nmap ]g <Plug>(coc-git-nextchunk)
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gc <Plug>(coc-git-commit)
+
+" git blaimer
+" https://github.com/APZelos/blamer.nvim
+" BlamerToggle
+let g:blamer_enabled = 0
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
