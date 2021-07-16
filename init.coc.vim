@@ -7,7 +7,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 
 " call plug#begin('~/.vim/plugged')
-call plug#begin()
+" call plug#begin()
+call plug#begin(stdpath('config') + '/plugged')
 Plug 'mhinz/vim-startify'
 " Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
