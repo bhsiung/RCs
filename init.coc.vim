@@ -2,13 +2,12 @@ set nocompatible              " be iMproved, required
 set ttyfast
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim
 " fzf
 set rtp+=~/.fzf
 
 " call plug#begin('~/.vim/plugged')
 " call plug#begin()
-call plug#begin(stdpath('config') + '/plugged')
+call plug#begin(stdpath('config') . '/plugged')
 Plug 'mhinz/vim-startify'
 " Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -20,52 +19,21 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'kamykn/spelunker.vim'
+Plug 'christoomey/vim-sort-motion'
+Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
+Plug 'scrooloose/nerdtree'
+Plug 'sukima/vim-javascript-imports'
+Plug 'sukima/vim-ember-imports'
 call plug#end()
 
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Bundle 'sonph/onehalf', {'rtp': 'vim/'}
-Bundle 'christoomey/vim-sort-motion'
-Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'kamykn/spelunker.vim'
-" Plugin 'mvolkmann/vim-js-arrow-function'
-" Plugin 'ntpeters/vim-better-whitespace' " Highlight trailing/unnecessary white space
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
-Plugin 'scrooloose/nerdtree'
-" Plugin 'mhinz/vim-signify' "https://github.com/mhinz/vim-signify
-Plugin 'sukima/vim-javascript-imports'
-Plugin 'sukima/vim-ember-imports'
-" Plugin 'tpope/vim-abolish'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'chrisbra/nrrwrgn'
-" Plugin 'jimmyhchan/dustjs.vim'
-" Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'matchit.zip'
-" Plugin 'Yggdroot/indentLine' " Indent guide lines
 
-call vundle#end()            " required
-
-" filetype plugin indent on " Allow smart indentation and filetype detection
-" set autoread " Auto re-read files that have changes outside of vim
-" " set bg=dark " Dark background
-" " set cmdheight=2 " Increase command line height
-" " set colorcolumn=90 " Vertical rule at 100 columns
-" highlight ColorColumn guibg=DarkGray
-"set cursorline " highlight current line
-" set hidden " Allow 'hidden' buffers
-" set lazyredraw " Don't redraw while executing macros
-" "set mouse=a " Turn on the mouse ;)
- set nowrap " Disable line auto wrapping
- set number " Turn on line numbers
- set numberwidth=5 " Gutter width
-" "set signcolumn=yes " Always show the signcolumn
-" set t_Co=256 " Enable pretty colors
-" syntax enable " Turn on syntax highlighting
-" " 2mat ErrorMsg '\%121v.' " Highlight first character in text spanning more than 120 columns
-" if has('termguicolors')
-  " set termguicolors
-" endif
+set nowrap " Disable line auto wrapping
+set number " Turn on line numbers
+set numberwidth=5 " Gutter width
+set signcolumn=yes " Always show the signcolumn
 
 " " Search settings
  set ignorecase " case-insensitive searching
@@ -117,28 +85,25 @@ call vundle#end()            " required
 " " explore
 " nnoremap <silent> <C-e> :Explore<CR>
 
+" ==================================
+ " Enable spelunker.vim. (default: 1)
+ " https://github.com/kamykn/spelunker.vim
  " spell check
  " http://thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
- " manually turn on `:spelllang`
- " get suggestion: `z=`
  set nospell
- " Enable spelunker.vim. (default: 1)
- " 1: enable
- " 0: disable
  let g:enable_spelunker_vim = 1
  let g:enable_spelunker_vim_on_readonly = 0
  let g:spelunker_max_hi_words_each_buf = 10
-" " Correct all words in buffer.  ZL
-" " Correct word under cursor.  Zl
-" " Correct all words in buffer.  ZC
-" " Correct word under cursor.  Zc
-" " Correct all words in buffer.  ZF
-" " Correct word under cursor.  Zf
-" " Add selected word to spellfile ZG
-" " Jump cursor to next misspelled words.  ZN
-" " Jump cursor to previous misspelled words.  ZP
-" " Toggle to enable or disable.  ZT
-" " Toggle to enable or disable only the current buffer.  Zt
+ augroup spelunker
+  autocmd!
+  " Setting for g:spelunker_check_type = 1:
+  autocmd BufWinEnter,BufWritePost *.vim,*.js,*.jsx,*.json,*.md call spelunker#check()
+
+  " Setting for g:spelunker_check_type = 2:
+  autocmd CursorHold *.vim,*.js,*.jsx,*.json,*.md call spelunker#check_displayed_words()
+augroup END
+" ==================================
+
 
  set spelllang=en
 
