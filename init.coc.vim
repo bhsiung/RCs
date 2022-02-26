@@ -9,10 +9,15 @@ set rtp+=~/.fzf
 " call plug#begin()
 call plug#begin(stdpath('config') . '/plugged')
 Plug 'mhinz/vim-startify'
-" Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+
+" Plug 'shinchu/lightline-gruvbox.vim'
+" Plug 'morhetz/gruvbox'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
-Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mattn/emmet-vim'
 Plug 'APZelos/blamer.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -25,8 +30,10 @@ Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'sukima/vim-javascript-imports'
 Plug 'sukima/vim-ember-imports'
+Plug 'pantharshit00/vim-prisma'
 call plug#end()
 
 
@@ -173,15 +180,6 @@ let g:javascript_plugin_jsdoc = 1
   " "
 
 
-" " https://github.com/pineapplegiant/spaceduck
- " if exists('+termguicolors')
-   " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-   " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-   " set termguicolors
- " endif
-
- " colorscheme spaceduck
-
 " set noshowmode
 " set updatetime=100
 
@@ -190,18 +188,57 @@ let g:javascript_plugin_jsdoc = 1
 " colorscheme onehalfdark
 " colorscheme jellybeans
 " colorscheme molokai
-colorscheme gruvbox
 " lightline
 if !has('gui_running')
   set t_Co=256
 endif
- let g:lightline = {
-       \ 'colorscheme': 'gruvbox',
-       \ 'active': {
-       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-       \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
-       \  }
-       \}
+
+" gruvbox start
+" colorscheme gruvbox
+" let g:lightline = {
+" \ 'colorscheme': 'gruvbox',
+" \ 'active': {
+" \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+" \   'right': [ [ 'lineinfo' ], [ 'percent' ], ]
+" \  }
+" \}
+" gruvbox end
+
+" ----------------------- spaceduck start
+" " https://github.com/pineapplegiant/spaceduck
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+colorscheme spaceduck
+" COC github
+" https://github.com/neoclide/coc-git
+" lightline
+let g:lightline = {
+  \ 'colorscheme': 'spaceduck',
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \ }
+\ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+" ----------------------- spaceduck end
+
 set noshowmode
 set updatetime=100
 
@@ -231,7 +268,7 @@ let g:startify_lists = [
         \ ]
 
 " =================================== CoC -----------------------------------
-let g:coc_global_extensions = ['coc-docthis', 'coc-tsserver', 'coc-css', 'coc-json', 'coc-git', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-docthis', 'coc-tsserver', 'coc-css', 'coc-json', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-snippets']
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -412,30 +449,6 @@ nnoremap <leader>p :Prettier<CR>
 " \    'background': { 'guibg': 'FFFFFF' },
 " \}
 "
-" COC github
-" https://github.com/neoclide/coc-git
-" lightline
-let g:lightline = {
-  \ 'active': {
-  \   'left': [
-  \     [ 'mode', 'paste' ],
-  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
-  \   ],
-  \   'right':[
-  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-  \     [ 'blame' ]
-  \   ],
-  \ },
-  \ 'component_function': {
-  \   'blame': 'LightlineGitBlame',
-  \ }
-\ }
-
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  " return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
 
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)

@@ -14,8 +14,8 @@ export ZSH=~/.oh-my-zsh
 # ZSH_THEME="blinks"
 # ZSH_THEME="af-magic"
 # ZSH_THEME="geoffgarside"
-ZSH_THEME="theunraveler"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="theunraveler"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git npm ssh-agent Z)
 plugins=(
   # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
@@ -23,12 +23,17 @@ plugins=(
   # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
   zsh-autosuggestions
   git
-  ssh-agent
-  z
+  #ssh-agent
+  #z
 )
 
 source $ZSH/oh-my-zsh.sh
-if [[ -a /usr/bin/nvim.appimage ]]; then
+if [[ -a ~/nvim-osx64/bin/nvim ]]; then
+  alias v='~/nvim-osx64/bin/nvim'
+  alias vi='v'
+  export EDITOR=~/nvim-osx64/bin/nvim
+  alias vo='v -u ~/.config/nvim/init.simple.vim'
+elif [[ -a /usr/bin/nvim.appimage ]]; then
   alias v='/usr/bin/nvim.appimage'
   alias vim='/usr/bin/nvim.appimage'
   export EDITOR=/usr/bin/nvim.appimage
@@ -80,24 +85,8 @@ fi
     # install_powerline_precmd
 # fi
 alias submit='git fetch && git rebase origin/master && mint submit'
-alias dd='killall phantomjs-2.0.0-li2-osx.bin'
-alias nuclear_option='pkill -9 ember; pkill -9 java; pkill -9 phantomjs; pkill -9 node; rm -rf ./tmp ~/.just ~/.bpr ~/.pemberly; echo -e "\t💣   💥   🔥   😎"'
-alias cleantmp='rsync -av --delete ~/empty/ ~/voyager-web_trunk/tmp/'
-alias goj='~/jobs-management-frontend_trunk/jobs-management-frontend/assets/javascripts'
-alias ulnf='sh scripts/fast.sh unlink ember-ts-facets && j init && j yarn start'
-alias lnf='j init && sh scripts/fast.sh unlink ember-ts-facets && sh scripts/fast.sh link ember-ts-facets && j yarn start'
-
-export STORK_GIT_CAMPAIGNS_DIR=/Users/$USER/flock-templates_trunk
-alias cat='pygmentize -O style=monokai -f console256 -g'
-alias killember='killall -9 ember && echo "ember killed"'
-alias killjava='killall -9 java && echo "java killed"'
-alias killnode='killall -9 node && echo "node killed"'
-alias killphantom='killall -9 phantomjs-2.0.0-li2-osx.bin && echo "phantom killed"'
-
-alias jsfuck='killjava; killnode; killember; killphantom'
-alias killjs='killjava; killnode; killember; killphantom'
+# alias cat='pygmentize -O style=monokai -f console256 -g'
 alias g='git'
-alias v='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
