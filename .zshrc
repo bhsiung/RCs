@@ -46,7 +46,7 @@ elif [[ -a /Users/bhsiung/nvim-osx64/bin/nvim ]]; then
   alias vo='v -u ~/.config/nvim/init.simple.vim'
 elif [[ -a /usr/local/bin/nvim ]]; then
   # mac!!
-  eval "$(starship init zsh)"
+  #eval "$(starship init zsh)"
   alias v='/usr/local/bin/nvim'
   alias vim='/usr/local/bin/nvim'
   export EDITOR=/usr/local/bin/nvim
