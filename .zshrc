@@ -18,10 +18,6 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git npm ssh-agent Z)
 plugins=(
-  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-  zsh-syntax-highlighting
-  # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
-  zsh-autosuggestions
   git
   #ssh-agent
   #z
@@ -32,7 +28,12 @@ if [[ -a ~/nvim-osx64/bin/nvim ]]; then
   alias v='~/nvim-osx64/bin/nvim'
   alias vi='v'
   export EDITOR=~/nvim-osx64/bin/nvim
-  alias vo='v -u ~/.config/nvim/init.simple.vim'
+  alias vo='v -u NONE'
+elif [[ -a /opt/homebrew/bin/nvim ]]; then
+  alias v='/opt/homebrew/bin/nvim'
+  alias vi='v'
+  export EDITOR=/opt/homebrew/bin/nvim
+  alias vo='v -u NONE'
 elif [[ -a /usr/bin/nvim.appimage ]]; then
   alias v='/usr/bin/nvim.appimage'
   alias vim='/usr/bin/nvim.appimage'
