@@ -1,6 +1,7 @@
 [user]
-  email = bhsiung@linkedin.com
-  name = Biing-yann Hsiung (bear)
+	email = bear.hsiung@okg.com
+	name = bear.hsiung
+	signingkey = 9320E81DF9D11C32
 [alias]
 	b = branch
 	c = cherry-pick

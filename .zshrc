@@ -222,6 +222,11 @@ fi
 # for v-web
 export NODE_OPTIONS="--max-old-space-size=8192"
 
+# for colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias l='colorls --group-directories-first --almost-all'
+alias ll='colorls --group-directories-first --almost-all --long' # detailed list view
+alias lc='colorls -lA --sd'
 
 # ag
 alias ag='ag --path-to-ignore ~/.ignore'

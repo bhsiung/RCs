@@ -464,3 +464,8 @@ nmap gc <Plug>(coc-git-commit)
 let g:blamer_enabled = 0
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
+
+" transparent bg
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" For Vim<8, replace EndOfBuffer by NonText
+autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
