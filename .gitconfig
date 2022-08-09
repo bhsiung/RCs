@@ -3,6 +3,7 @@
 	name = bear.hsiung
 	signingkey = 9320E81DF9D11C32
 [alias]
+	lg = log --no-merges
 	b = branch
 	c = cherry-pick
 	ci = commit

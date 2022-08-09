@@ -15,24 +15,26 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'dev' }
 " Plug 'shinchu/lightline-gruvbox.vim'
 " Plug 'morhetz/gruvbox'
 
-Plug 'shime/vim-livedown'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'mattn/emmet-vim'
 Plug 'APZelos/blamer.nvim'
-Plug 'itchyny/lightline.vim'
+Plug 'christoomey/vim-sort-motion'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'kamykn/spelunker.vim'
-Plug 'christoomey/vim-sort-motion'
+Plug 'mattn/emmet-vim'
+Plug 'mxw/vim-jsx'
+Plug 'yuezk/vim-js'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pantharshit00/vim-prisma'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'sheerun/vim-polyglot'
+Plug 'shime/vim-livedown'
 Plug 'sukima/vim-javascript-imports'
-Plug 'pantharshit00/vim-prisma'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 
@@ -161,6 +163,13 @@ let g:javascript_plugin_jsdoc = 1
  imap <C-f> <plug>(fzf-complete-line)
  nmap <C-a> :Ag<CR>
  nmap <C-p> :GFile<CR>
+
+
+ command! -bang -nargs=* Ag
+    \ call fzf#vim#ag(<q-args>,
+    \                 { 'options': '--delimiter : --preview "echo {1}" --preview-window "top:0:wrap"',
+    \                   'down': '40%'})
+
 
 " " hi Normal guibg=NONE ctermbg=NONE
 

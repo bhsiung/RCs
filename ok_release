@@ -1,0 +1,213 @@
+#!/bin/bash
+set -euo pipefail
+
+# Function for creating a minor version branch
+greeting() {
+  echo "Hello Bear"
+}
+
+# Function to update all @ok/ dependencies in one go (integrated from update_ok_dependencies.sh)
+update_ok_dependencies() {
+  # Extract all @ok/ dependencies from dependencies, peerDependencies, devDependencies
+  deps=$(jq -r '
+  (.dependencies, .peerDependencies, .devDependencies)
+  | select(type == "object") 
+  | keys[]                  
+  | select(startswith("@ok/"))
+' package.json)
+  
+  skipped=()
+  test_fail_count=0
+
+  for dep in $deps; do
+    if [[ "$dep" == "@ok/ont" ]]; then
+        echo "Skipping $dep: This dependency is not allowed."
+        continue  # Skip to the next iteration
+    fi
+    # Get the old version before update
+    old_version=$(jq -r ".dependencies[\"$dep\"] // .peerDependencies[\"$dep\"] // .devDependencies[\"$dep\"]" package.json)
+    echo "Updating $dep from $old_version to latest..."
+    npm install "$dep@latest"
+
+    # Check for changes
+    if git diff --quiet package.json package-lock.json; then
+      echo "No changes after installing $dep@latest."
+      continue
+    fi
+
+    # Get the new version from package.json after update
+    new_version=$(jq -r ".dependencies[\"$dep\"] // .peerDependencies[\"$dep\"] // .devDependencies[\"$dep\"]" package.json)
+
+    echo "Running tests (with snapshot update)..."
+    if npm test -- -u; then
+      echo "Tests passed. Committing changes..."
+      # Construct commit message with from/to versions
+      commit_msg="chore: bump $dep from $old_version to $new_version"
+      
+      git add package.json package-lock.json
+      git commit -m "$commit_msg"
+    else
+      echo "Tests failed for $dep@$new_version. Reverting changes..."
+      git restore package.json package-lock.json
+      skipped+=("$dep")
+      test_fail_count=$((test_fail_count+1))
+    fi
+  done
+
+  echo "All updates processed."
+  
+  if [ ${#skipped[@]} -gt 0 ]; then
+    echo "Skipped dependencies due to test failures:"
+    for s in "${skipped[@]}"; do
+      # Retrieve the version that was intended to install but failed
+      failed_version=$(npm show "$s" version)
+      echo "- $s@$failed_version"
+    done
+  else
+    echo "No dependencies were skipped."
+  fi
+
+  echo "Total unit test failures during updates: $test_fail_count"
+}
+
+# Function for creating a minor version branch
+create_patch_version_branch() {
+  git co master && git pull && \
+  git co release && git pull && git merge master && \
+  npm i && npm test -- --u && \
+  git ci -a -m 'chore: update test snapshot' || true && \
+  git push && \
+  okt git dev  && \
+  git merge release
+}
+
+# Function for creating a minor version branch
+create_minor_version_branch() {
+  git co master && git pull && \
+  git co release && git pull && git merge master && \
+  npm i && npm test -- --u && \
+  git ci -a -m 'chore: update test snapshot' || true && \
+  git push && \
+  jq -r '.version' package.json | \
+  awk -F. -v OFS=. '{$2=$2+1; $3=0; print}' | \
+  xargs okt git dev -v && \
+  git merge release
+}
+
+# Function for publishing and releasing
+publish_and_release() {
+  version=$(git rev-parse --abbrev-ref HEAD | awk -F/ '{print $2}') && \
+  git commit -a -m "chore: update changelog for $version" && \
+  npm version $version && \
+  npm publish && \
+  okt git prepub -d -t $version && \
+  okt git tag -t $version && \
+  git checkout release && \
+  git merge dev/${version} && \
+  git push --no-verify
+}
+
+# Function for publishing and releasing
+release() {
+  version=$(git rev-parse --abbrev-ref HEAD | awk -F/ '{print $2}') && \
+  git commit -a -m "chore: update changelog for $version" && \
+  npm version $version && \
+  okt git prepub -d -t $version && \
+  okt git tag -t $version && \
+  git checkout release && \
+  git merge dev/${version} && \
+  git push --no-verify
+}
+npm_set_ok() {
+  npm set registry https://npm.okg.com/
+}
+npm_set_nonok() {
+  npm set registry https://registry.npmjs.org/
+}
+
+# Function to append commits to CHANGELOG.md
+generate_changelog() {
+  version=$(git rev-parse --abbrev-ref HEAD | awk -F/ '{print $2}')
+  date=$(date +'%Y-%m-%d')
+
+  # Extract commit messages excluding merge commits
+  commits=$(git log --no-merges --pretty=format:"- %s @%an" "$(git describe --tags --abbrev=0)..HEAD")
+
+  # Ensure there are commit messages to add
+  if [ -z "$commits" ]; then
+    echo "No new commits to append to CHANGELOG."
+    return
+  fi
+
+  # Prepare the new changelog section
+  changelog_section="### $version ($date)\n$commits\n"
+
+  # Split the changelog section into multiple lines for sed (macOS compatible)
+
+  echo -e $changelog_section
+  printf "### %s (%s)\n%s\n" "$version" "$date" "$commits"
+}
+
+# Prompt user to select an action
+echo "Select an action:"
+echo "1. Create minor version branch"
+echo "2. Release"
+echo "3. Publish and release"
+echo "4. Update @ok/ dependencies"
+echo "6. npm set ok"
+echo "7. npm set non-ok"
+echo "8. Test"
+echo "9. Get Changelog"
+
+read -p "Enter your choice (1 or 8): " choice
+
+# Execute the corresponding function based on the user's choice
+case $choice in
+  1)
+    read -p "1) minor 2) patch: " choice2
+    case $choice2 in
+      1) 
+        echo "Creating minor version branch..."
+        create_minor_version_branch
+        ;;
+      2)
+        echo "Creating patch version branch..."
+        create_patch_version_branch
+        ;;
+      *)
+        echo "Invalid choice! Exiting."
+        ;;
+    esac
+    ;;
+  2)
+    echo "Releasing..."
+    release
+    ;;
+  3)
+    echo "Publishing and releasing..."
+    publish_and_release
+    ;;
+  4)
+    echo "Updating @ok/ dependencies..."
+    update_ok_dependencies
+    ;;
+  6)
+    echo "setting npm registry to ok..."
+    npm_set_ok
+    ;;
+  7)
+    echo "setting npm registry to ok..."
+    npm_set_nonok
+    ;;
+  8)
+    echo "Start testing..."
+    greeting
+    ;;
+  9)
+    echo "Generate changelog..."
+    generate_changelog
+    ;;
+  *)
+    echo "Invalid choice! Exiting."
+    ;;
+esac
