@@ -10,11 +10,12 @@ set rtp+=~/.fzf
 call plug#begin(stdpath('config') . '/plugged')
 Plug 'mhinz/vim-startify'
 
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'pineapplegiant/spaceduck', { 'branch': 'dev' }
 
 " Plug 'shinchu/lightline-gruvbox.vim'
 " Plug 'morhetz/gruvbox'
 
+Plug 'shime/vim-livedown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
@@ -26,16 +27,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'kamykn/spelunker.vim'
 Plug 'christoomey/vim-sort-motion'
-Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'sukima/vim-javascript-imports'
-Plug 'sukima/vim-ember-imports'
 Plug 'pantharshit00/vim-prisma'
 call plug#end()
 
+
+" DACS
+if $DACS != ''
+  let &viminfofile = expand('$DACS/nvim/shada/main.shada')
+endif
 
 set nowrap " Disable line auto wrapping
 set number " Turn on line numbers
@@ -228,9 +232,19 @@ let g:lightline = {
   \   ],
   \ },
   \ 'component_function': {
+  \   'filename': 'LightlineFilename',
   \   'blame': 'LightlineGitBlame',
   \ }
 \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 function! LightlineGitBlame() abort
   let blame = get(b:, 'coc_git_blame', '')
@@ -469,3 +483,8 @@ let g:blamer_show_in_insert_modes = 0
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 " For Vim<8, replace EndOfBuffer by NonText
 autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+
+" Markdown preview
+" https://vimtricks.com/p/preview-markdown-files/
+nmap gm :LivedownToggle<CR>
