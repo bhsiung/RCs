@@ -1,7 +1,10 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ $DACS ]]; then
+  XDG_CACHE_HOME=$DACS
+  source "${DACS}/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
+elif [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -224,6 +227,7 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 
 # for colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
+alias ls='colorls'
 alias l='colorls --group-directories-first --almost-all'
 alias ll='colorls --group-directories-first --almost-all --long' # detailed list view
 alias lc='colorls -lA --sd'
@@ -233,8 +237,19 @@ alias ag='ag --path-to-ignore ~/.ignore'
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# DACS
+alias okok='{$DACS}/FE/Documents/ok'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ ! -f {$DACS}/.p10k.zsh ]]; then
+  source $DACS'/.p10k.zsh'
+ elif [[ ! -f ~/.p10k.zsh ]]; then
+   source ~/.p10k.zsh
+ fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
