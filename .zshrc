@@ -27,6 +27,7 @@ plugins=(
   #z
 )
 
+alias yolo='claude --dangerously-skip-permissions'
 source $ZSH/oh-my-zsh.sh
 alias pok='okt git dev && npm test && npm run pub && okt git prepub -d'
 if [[ -a ~/nvim-osx64/bin/nvim ]]; then
@@ -134,47 +135,6 @@ function accept-line {
 }
 zle -N accept-line
 
-# enable yarn executable path
-export PATH="$PATH:/Users/biingyannhsiung/Library/Python/3.9/bin:`yarn global bin`"
-
-ontsweb() {
-  mpName=`pwd|sed 's/.*\(ember-ts-.*\)_trunk$/\1/'`
-  files=`git show --pretty="" --name-only|grep '^addon'`
-  local IFS=$'\n'
-
-  if [ $ZSH_VERSION ]; then
-    setopt sh_word_split
-  fi
-
-  for f in $files; do
-    cp $f ~/ts-web/node_modules/@linkedin/$mpName/$f
-  done;
-
-  cd ~/ts-web
-  echo "\n" >> app/router.js
-  git co -- app/router.js
-  cd ~/$mpName"_trunk"
-}
-
-onconsumer() {
-  mpName=`pwd|sed 's/.*\(ember-ts-.*\)_trunk$/\1/'`
-  files=`git show --pretty="" --name-only|grep '^addon'`
-  local IFS=$'\n'
-
-  if [ $ZSH_VERSION ]; then
-    setopt sh_word_split
-  fi
-
-  for f in $files; do
-    cp $f ~/$1/node_modules/@linkedin/$mpName/$f
-  done;
-
-  cd ~/$1
-  echo "\n" >> tests/dummy/app/router.js
-  git co -- tests/dummy/app/router.js
-  cd ~/$mpName"_trunk"
-}
-
 up () {
   branchName=`git branch | grep \* | cut -d ' ' -f2`
   git co master && git pull && git co $branchName && git rebase master
@@ -227,13 +187,6 @@ fi
 # for v-web
 export NODE_OPTIONS="--max-old-space-size=8192"
 
-# for colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls'
-alias l='colorls --group-directories-first --almost-all'
-alias ll='colorls --group-directories-first --almost-all --long' # detailed list view
-alias lc='colorls -lA --sd'
-
 # ag
 alias ag='ag --path-to-ignore ~/.ignore'
 export VOLTA_HOME="$HOME/.volta"
@@ -246,12 +199,29 @@ alias okok="cd $DACS/FE/Documents/ok"
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [[ ! -f {$DACS}/.p10k.zsh ]]; then
-  source $DACS'/.p10k.zsh'
- elif [[ ! -f ~/.p10k.zsh ]]; then
-   source ~/.p10k.zsh
- fi
+ source ~/.p10k.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/bearhsiung/.bun/_bun" ] && source "/Users/bearhsiung/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# Auto-activate a local Python virtualenv when entering a directory with `.venv`.
+autoload -U add-zsh-hook
+auto_activate_venv() {
+  if [[ -n "$VIRTUAL_ENV" && "$VIRTUAL_ENV" != "$PWD/.venv" ]]; then
+    deactivate 2>/dev/null
+  fi
+  if [[ -z "$VIRTUAL_ENV" && -f "$PWD/.venv/bin/activate" ]]; then
+    source "$PWD/.venv/bin/activate"
+  fi
+}
+add-zsh-hook chpwd auto_activate_venv
+auto_activate_venv
