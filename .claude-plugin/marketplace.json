@@ -1,0 +1,15 @@
+{
+  "name": "bear-marketplace",
+  "displayName": "Bear's Marketplace",
+  "description": "Bear's personal Claude Code plugins",
+  "owner": {
+    "name": "Bear Hsiung"
+  },
+  "plugins": [
+    {
+      "name": "bear-helper",
+      "source": "./bear-helper",
+      "description": "Bear's personal toolkit — TTS, exercise deployment, prototyping, and shipping for PromptFit"
+    }
+  ]
+}

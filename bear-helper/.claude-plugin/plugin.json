@@ -1,0 +1,8 @@
+{
+  "name": "bear-helper",
+  "version": "1.0.0",
+  "description": "Bear's personal Claude Code toolkit — TTS generation, exercise deployment, prototyping, and shipping for PromptFit",
+  "author": {
+    "name": "Bear Hsiung"
+  }
+}
