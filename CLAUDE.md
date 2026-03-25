@@ -42,3 +42,11 @@ Default to Plan phase. Never jump straight into execution.
 - Proactively infer intent from context, codebase, and conversation history
 - If info can be derived, derive it — don't ask
 - Ask everything during Plan. Ask nothing during Execute.
+
+---
+
+## QA Agent (`/bear-helper:qa`)
+
+- **大 feature / 架構變動** → 執行完後跑 QA
+- **小修 / 單檔改動 / asset 新增 / CSS 調整** → 跳過，build + test 就夠
+- 不要每個小 task 都跑 QA，太重了

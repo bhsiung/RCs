@@ -1,0 +1,12 @@
+{
+  "min_session_messages": 5,
+  "correction_keywords": [
+    "不對", "不是", "改成", "應該是", "別用", "不要用",
+    "wrong", "don't use", "should be", "change to", "fix this",
+    "actually no", "instead use", "no,", "nope", "不行", "換成",
+    "錯了", "重做", "再試", "not like that", "不要這樣"
+  ],
+  "max_patterns_per_notebook": 30,
+  "stale_after_days": 60,
+  "pending_notify_threshold": 5
+}
