@@ -1,0 +1,5 @@
+幫我把 photo crop UI 改成支援多選。先給我 plan 不要直接寫 code。
+為什麼我的 React useEffect 不會 trigger？我 dependency 都加了。
+我剛改完一段 auth flow，幫我 review 一下。先看 token expiry 那塊。
+fix this bug
+解釋一下 useMemo 跟 useCallback 差在哪
