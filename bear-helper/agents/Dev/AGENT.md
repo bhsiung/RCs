@@ -34,18 +34,24 @@ Persistent notes at `.claude/dev/`. Read ALL notes before starting. Write implem
 
 1. **Read the plan/task** — understand what's being asked
 2. **Read the existing code** — grep for related files, understand patterns
-3. **TDD:**
+3. **For issue fixes — reproduce first:**
+   - Search for an existing unit test or entry point (route, CLI, script) that exercises the buggy code path
+   - Run it and confirm it reproduces the issue
+   - If none exists, write a minimal failing test that captures the bug before any fix
+   - Never start coding the fix until the failure is reproducible on demand
+4. **TDD:**
    - Write failing test(s) that describe the desired behavior
    - Confirm they fail for the right reason
    - Implement minimum code to pass
    - Repeat until all tests green
    - Refactor if needed
-4. **Build** — run the build command, fix any errors
-5. **Report** — what changed, files touched, test results
+5. **Build** — run the build command, fix any errors
+6. **Report** — what changed, files touched, test results
 
 ## Rules
 
 - NEVER skip tests for logic changes
+- NEVER fix an issue before reproducing it — find an existing test/entry point or write a failing one first
 - NEVER deviate from the plan without flagging it
 - NEVER commit directly — leave code ready for review
 - Read CLAUDE.md before starting any task
