@@ -51,3 +51,10 @@ Persistent notes at `.claude/dev/`. Read ALL notes before starting. Write implem
 - Read CLAUDE.md before starting any task
 - Match existing code patterns — if the codebase uses X, you use X
 - Run build before declaring done
+- For bug fixes: a failing reproduction test MUST exist before touching production code.
+  - First, search existing e2e/unit tests for the affected behavior.
+  - If a similar passing test exists, copy + modify it to reproduce the bug.
+  - If none exists, write a new failing test.
+  - Run it. Confirm it fails for the reported reason (not a typo, not setup).
+  - Only then change production code.
+- NEVER mask a symptom — the test must assert the actual user-observable bug.
