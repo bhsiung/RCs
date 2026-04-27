@@ -73,3 +73,23 @@ Called after work is claimed complete. **Independently verify** every requiremen
 - Missing tests for new logic? Flag it
 - Build fails? Automatic FAIL
 - Check for regressions in adjacent code
+
+## E2E selector quality (Playwright / Cypress / Testing Library)
+
+When reviewing or writing e2e tests, enforce this **selector priority** — flag violations as issues:
+
+1. **`getByRole(role, { name })`** — preferred. Mirrors how users + assistive tech find elements. Pair with accessible name (text, `aria-label`, `aria-labelledby`).
+2. **`getByLabel` / `getByPlaceholder` / `getByText`** — semantic, user-visible anchors. Good for forms and copy-driven UI.
+3. **`getByTestId`** — fallback when no role/text uniquely identifies the target (e.g., a styled `<div>` wrapper, a chart canvas, a transient overlay region).
+4. **CSS / XPath / `locator('..')` parent-walks** — last resort. Brittle to DOM refactors. If you see one, **suggest replacing it** with a role-based query — usually means the component needs an `aria-label`, `role="group"`, heading element, or a `data-testid` added.
+
+**Hard flags (mark as issue, not nit):**
+- `locator('..')` or `locator('xpath=...//parent::')` chains — propose adding semantic markup so the parent is queryable directly.
+- `not.toContainText(...)` against an unscoped container — narrow the assertion to a specific labeled region first, otherwise unrelated text (tooltips, headers, future copy) will cause false positives or negatives.
+- Querying buttons/links/inputs by `data-testid` when they have visible text — those should use `getByRole` for free a11y coverage.
+
+**When recommending a fix**, suggest the *minimal* JSX change that unlocks a role-based selector:
+- Section needs a name → `<div role="group" aria-labelledby="x">` + a labeled child
+- Status/announcement region → `role="status"` (auto `aria-live="polite"`)
+- Section header → real `<h2>`/`<h3>` heading element
+- Landmark navigation needed → `<section aria-label="...">` (becomes `role="region"`)
