@@ -1,6 +1,5 @@
 {
   "name": "bear-marketplace",
-  "displayName": "Bear's Marketplace",
   "description": "Bear's personal Claude Code plugins",
   "owner": {
     "name": "Bear Hsiung"
@@ -9,7 +8,9 @@
     {
       "name": "bear-helper",
       "source": "./bear-helper",
-      "description": "Bear's personal toolkit — TTS, exercise deployment, prototyping, and shipping for PromptFit"
+      "description": "Bear's Claude Code toolkit. Sophia orchestrates a TDD harness with required Dev/Alex/Kyle trio (Janice/Mia/Raj optional), executing autonomously once the plan is approved. Key commands: /bear-helper:bootstrap (one-time setup — caveman CLAUDE.md + yolo alias), /bear-helper:ship-it (commit + Cloudflare Workers deploy + health check), and /bear-helper:lighthouse (Google PageSpeed Insights for any URL).",
+      "category": "development",
+      "keywords": ["sophia", "tdd", "harness", "orchestrator", "bootstrap", "ship-it", "lighthouse"]
     }
   ]
 }

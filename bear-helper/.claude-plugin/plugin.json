@@ -1,7 +1,8 @@
 {
   "name": "bear-helper",
   "version": "1.0.0",
-  "description": "Bear's personal Claude Code toolkit — TTS generation, exercise deployment, prototyping, and shipping for PromptFit",
+  "description": "Bear's Claude Code toolkit. Sophia orchestrates a TDD harness with required Dev/Alex/Kyle trio (Janice/Mia/Raj optional), executing autonomously once the plan is approved. Key commands: /bear-helper:bootstrap (one-time setup — caveman CLAUDE.md + yolo alias), /bear-helper:ship-it (commit + Cloudflare Workers deploy + health check), and /bear-helper:lighthouse (Google PageSpeed Insights for any URL).",
+  "keywords": ["sophia", "tdd", "harness", "orchestrator", "bootstrap", "ship-it", "lighthouse"],
   "author": {
     "name": "Bear Hsiung"
   }
